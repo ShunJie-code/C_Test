@@ -1,18 +1,16 @@
 /**
- * @file p48_memoryPool.c
+ * @file p48_addressBook.c
  * @author XiaoShunJie (xiaoshunjie@qq.com)
- * @brief 内存池，malloc会有内存碎片，先不free
+ * @brief 通讯录
  * @version 0.1
- * @date 2023-07-24
- *
+ * @date 2023-07-28
+ * 
  * @copyright Copyright (c) 2023
- * 通过写一个通讯录小程序练习增删改查
+ * 
  */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#define MAX 1024
 
 typedef struct Person
 {
@@ -20,10 +18,6 @@ typedef struct Person
     char phone[20];
     struct Person *next;
 } Person_t;
-
-Person_t *pool = NULL;
-int count;
-
 
 void GetInput(Person_t *person);
 void PrintPerson(Person_t *person);
@@ -46,19 +40,11 @@ void AddPerson(Person_t **contacts)
 {
     Person_t *person;
     Person_t *temp;
-    // 如果内存池非空则从内存池获取
-    if (pool != NULL) {
-        person = pool;
-        pool = pool->next;
-        count--;
-    }
-    else {
-        person = (Person_t *)malloc(sizeof(Person_t));
-        if (person == NULL)
-        {
-            printf("Malloc fail!\n");
-            exit(1);
-        }
+    person = (Person_t *)malloc(sizeof(Person_t));
+    if (person == NULL)
+    {
+        printf("Malloc fail!\n");
+        exit(1);
     }
     GetInput(person);
 
@@ -142,24 +128,7 @@ void DelPerson(Person_t **contacts)
         {
             previous->next = current->next;
         }
-        // 判断内存池是不是有空位
-        if (count < MAX)
-        {
-            if (pool != NULL)
-            {
-                temp = pool;
-                pool = person;
-                person->next = temp;
-            }
-            else {
-                pool = person;
-                person->next = NULL;
-            }
-            count++;
-        }
-        else{
-            free(person);
-        }
+        free(person);
     }
 }
 
@@ -185,22 +154,12 @@ void ReleaseContacts(Person_t **contacts)
     }
 }
 
-void ReleasePool(void)
-{
-    Person_t *temp;
-    while (pool != NULL)
-    {
-        temp = pool;
-        pool = pool->next;
-        free(temp);   
-    }
-}
 int main(void)
 {
     int code;
     Person_t *contacts = NULL;
     Person_t *person;
-    printf("|Welcome to the address book!|\n");
+    printf("|Welcome to the program!|\n");
     printf("|1 Insert new contacts! |\n");
     printf("|2 Find contacts!       |\n");
     printf("|3 Change contacts!     |\n");
@@ -245,6 +204,5 @@ int main(void)
     }
 END:
     ReleaseContacts(&contacts);
-    ReleasePool();
     return 0;
 }
