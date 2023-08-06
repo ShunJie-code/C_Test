@@ -35,15 +35,49 @@ void Test1(void)
 
 /**
  * @brief calloc 分配内存空间并初始化为0
- * 
+ * Test2 与 Test1 的写法等价
  */
 void Test2(void)
 {
+    int i;
+    int *ptr;
+    ptr = (int *)calloc(N, sizeof(int));
+    for (i = 0; i < N; i++) {
+        printf("%d ", ptr[i]);
+    }
+    putchar('\n');
+    free(ptr);
+}
+
+void Test3(void)
+{
+    // realloc 重新指定大小、内存节能
     int i, num;
-    int count;
+    int count = 0;
+    int *ptr = NULL;
+    do
+    {
+        printf("Please enter a int: ");
+        scanf("%d", &num);
+        count++;
+        ptr = (int *)realloc(ptr, count * sizeof(int));
+        if (ptr == NULL) {
+            exit(1);
+        }
+        ptr[count - 1] = num;
+    } while (num != -1);
+
+    printf("What you enter are: ");
+    for (i = 0; i < count; i++) {
+        printf("%d ", ptr[i]);
+    }
+    putchar('\n');
+    free(ptr);
 }
 int main(void)
 {
     Test1();
+    Test2();
+    Test3();
     return 0;
 }
