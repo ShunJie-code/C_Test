@@ -1,0 +1,33 @@
+@startuml test
+struct st0
+{
+    int i;
+    double d;
+
+}
+
+enum en0 
+{
+    1;
+    2;
+    3
+}
+
+enum en1 
+{
+    1;
+    2;
+    3
+}
+
+struct st1 
+{
+    st0 st_0;
+    en0 en_0;
+    en1 en_1;
+}
+
+st0 --> st1
+en0 --> st1
+en1 --> st1
+@enduml
