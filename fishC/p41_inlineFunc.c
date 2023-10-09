@@ -32,7 +32,7 @@ static inline int Square(int x)
     return x * x;
 }
 // 当可变参数的个数为0时,这里的##可以把把前面多余的","去掉,否则会编译出错。
-#define DEBUGPRINT(format, ...) do{if (g_flag % 10 == 0) {printf(format, ##__VA_ARGS__);}}while(0)
+#define DEBUGPRINT(format, ...) do{if (g_flag % 20 == 0) {printf(format, ##__VA_ARGS__);}}while(0)
 int g_flag;
 void Test3(void)
 {
