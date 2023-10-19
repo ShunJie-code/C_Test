@@ -22,7 +22,7 @@ typedef struct Person
 } Person_t;
 
 Person_t *pool = NULL;
-int count;
+static int count;
 
 
 void GetInput(Person_t *person);
