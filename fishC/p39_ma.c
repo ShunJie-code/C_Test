@@ -33,7 +33,7 @@ void Test1(void)
     char *str2 = "You are right";
 
     int *malloc_var = (int *)malloc(sizeof(int));
-    // 代码段
+    // 只读区Text 代码段+常量
     printf("Text segment:\n");
     printf("addr of func = %#p\n", func);
     printf("addr of str1 = %#p\n", str1);
@@ -81,7 +81,7 @@ void Test3(void)
 int main(void)
 {
     Test1();
-    Test2();
-    Test3();
+    // Test2();
+    // Test3();
     return 0;
 }
