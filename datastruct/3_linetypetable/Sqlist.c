@@ -1,31 +1,22 @@
 /**
- * p7-8 线性表的抽象数据类型
+ * p7 线性表抽象数据类型
+ * p8 线性表的顺序存储结构
+ * p9 线性表顺序存储结构的优缺点
  * Operation
  *   InitList(*L)          ： 初始化线型表
  *   GetElem(L, i, *e)     :  查找线性表第i个参数的值
  *   ListInsert(*L, i, e)  :  在L中第i个位置之前插入新的数据元素e，L长度+1
  *   ListDelete(*L, i, *e) :  删除L的第i个数据元素，并用e返回其值，L的长度-1
- * 
+ *   LocateElem(L, e)      :  查找成功则返回e首次出现的序号（从1开始），不存在则返回 FALSE
+ * 对于不同的应用，线性表的基本操作是不同的，但上述操作是最基本的，
+ * 复杂的应用可以用基本操作组合来实现。
+ * 比如实现两个线性表A、B的并集操作：UnionL(*L, L)
  * Debug
  *   ShowListData(L)      :   展示线性表的数据
 */
 #include <stdio.h>
 #include <string.h>
-
-#define MAXSIZE 20
-#define OK 1
-#define ERROR 0
-#define TRUE 1
-#define FALSE 0
-
-typedef int ElemType;
-typedef int Status;
-
-typedef struct
-{
-    ElemType data[MAXSIZE];
-    int length;               // 线性表当前的长度
-}SqList;
+#include "Sqlist.h"
 
 void ShowListData(SqList l)
 {
@@ -37,12 +28,27 @@ void ShowListData(SqList l)
     putchar('\n');
 }
 
-Status InitList(SqList *l)
+int LocateElem(SqList l, int e)
 {
-    int n = 10;
-    int arr[10] = {0, 1, 2, 3, 6, 5, 4, 9, 8, 7};
-    l->length = n;
-    memcpy(l->data, arr, sizeof(arr));
+    for (int i = 0; i < l.length; i++)
+    {
+        if (e == l.data[i])
+        {
+            return i + 1;
+        }
+    }
+    return FALSE;
+}
+
+Status InitList(SqList *l, int *arr, int len)
+{
+    if (len > MAXSIZE || arr == NULL)
+    {
+        return ERROR;
+    }
+    
+    l->length = len;
+    memcpy(l->data, arr, sizeof(ElemType) * len);
     return OK;
 }
  
@@ -108,30 +114,19 @@ Status ListDelete(SqList *l, int i, ElemType *e)
     return OK;
 }
 
-int main(void)
+void UnionL(SqList *La, SqList Lb)
 {
-    SqList ls;
-    Status ret;
+    int La_len, Lb_len, i;
     ElemType e;
-    ret = InitList(&ls);
-    ret = GetElem(ls, 10, &e);
-    if (ret == OK)
-        printf("ls 10th data = %d\n", e);
-    else
-        printf("Please check your param\n");
-    ShowListData(ls);
-    ret = ListInsert(&ls, 5, 999);
-    if (ret == OK)
-        ShowListData(ls);
-    else
-        printf("Please check your param\n");
-    ret = ListDelete(&ls, 5, &e);
-    if (ret == OK)
+    La_len = La->length;
+    Lb_len = Lb.length;
+
+    for (i = 1; i <= Lb_len; i++)
     {
-        printf("Deleted data = %d\n", e);
-        ShowListData(ls);
+        GetElem(Lb, i, &e);
+        // 找不到输出为0，取反为1，即可插入该值
+        if (!LocateElem(*La, e)) {   
+            ListInsert(La, ++La_len, e);
+        }
     }
-    else
-        printf("Please check your param\n");
-    return 0;
 }
