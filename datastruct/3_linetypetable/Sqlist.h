@@ -1,14 +1,7 @@
 /**
  * 线性表顺序存储结构头文件
 */
-#define MAXSIZE 20
-#define OK 1
-#define ERROR 0
-#define TRUE 1
-#define FALSE 0
-
-typedef int ElemType;
-typedef int Status;
+#include "common.h"
 
 typedef struct
 {
@@ -23,6 +16,7 @@ Status InitList(SqList *l, int *arr, int len);
 Status GetElem(SqList l, int i, ElemType *e);
 Status ListInsert(SqList *L, int i, ElemType e);
 Status ListDelete(SqList *l, int i, ElemType *e);
+
 void UnionL(SqList *La, SqList Lb);
 
 
