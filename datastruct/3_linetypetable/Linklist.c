@@ -7,23 +7,37 @@
 #include <time.h>
 #include "Linklist.h"
 
-void CreateListHead(LinkList *L, int n)
+void LinkListInitHead(LinkList *L, int n)
 {
     LinkList p;
     int i;
+#if 0
     srand(time(NULL));
+#endif
     *L = (LinkList)malloc(sizeof(Node));
-    (*L)->next = NULL;//优先级原因所以要有括号
+    (*L)->next = NULL;                           // 优先级原因所以要有括号
     for (i = 0; i < n; i++)
     {
         p = (LinkList)malloc(sizeof(Node));
-        p->data = rand() % 100 + 1;
+        // p->data = rand() % 100 + 1;
+        p->data = i;
         p->next = (*L)->next;
         (*L)->next = p;
     }
 }
 
-Status GetElem(LinkList L, int i, ElemType *e)
+void LinklistShow(LinkList L)
+{
+    printf("Link list data: ");
+    while (L->next)
+    {
+        L = L->next;
+        printf("%d ", L->data);
+    }
+    putchar('\n');
+}
+
+Status LinkGetElem(LinkList L, int i, ElemType *e)
 {
     int j;
     LinkList p;
@@ -45,7 +59,7 @@ Status GetElem(LinkList L, int i, ElemType *e)
 }
 
 // 操作结果：在L中第i个位置之前插入新的数据元素e，L的长度加1
-Status ListInsert(LinkList *L, int i, ElemType e)
+Status LinkListInsert(LinkList *L, int i, ElemType e)
 {
     int j;
     LinkList p, s;
@@ -60,12 +74,27 @@ Status ListInsert(LinkList *L, int i, ElemType e)
     {
         return ERROR;
     }
-    s->data=e;
 
     // 返回为空指针，强制转换为Linklist类型指针
     s = (LinkList)malloc(sizeof(Node));
+    s->data = e;
+    
     // 先插入指针后插入值
     s->next = p->next;
     p->next = s;
     return 0;
+}
+
+Status LinkListClear(LinkList *L)
+{
+    LinkList p, q;
+    p = (*L)->next;
+    while(p)
+    {
+        q = p->next;
+        free(p);
+        p = q;
+    }
+    (*L)->next = NULL;
+    return OK;
 }

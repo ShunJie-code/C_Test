@@ -12,4 +12,8 @@ typedef struct Node
 
 typedef struct Node *LinkList;
 
-void CreateLinkListHead(LinkList *L, int n);
+void LinkListInitHead(LinkList *L, int n);
+void LinklistShow(LinkList L);
+Status LinkGetElem(LinkList L, int i, ElemType *e);
+Status LinkListInsert(LinkList *L, int i, ElemType e);
+Status LinkListClear(LinkList *L);

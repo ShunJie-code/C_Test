@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include "Sqlist.h"
+#include "Linklist.h"
+
 // 测试顺序结构线性表基础功能
 void Test1(void)
 {
@@ -47,10 +49,26 @@ void Test2(void)
     ShowListData(ls1);
 }
 
+void Test3(void)
+{
+    LinkList ll;
+    ElemType e;
+    LinkListInitHead(&ll, 10);
+
+    LinklistShow(ll);
+    LinkListInsert(&ll, 5, 99);
+    LinklistShow(ll);
+    LinkGetElem(ll, 9, &e);
+    printf("9th data = %d\n", e);
+    LinkListClear(&ll);
+    LinklistShow(ll);
+}
+
 int main(void)
 {
     // Test1();
-    Test2();
+    // Test2();
+    Test3();
     return 0;
 }
 

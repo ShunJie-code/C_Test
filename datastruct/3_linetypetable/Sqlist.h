@@ -12,8 +12,9 @@ typedef struct
 void ShowListData(SqList l);
 int LocateElem(SqList l, int e);
 
-Status InitList(SqList *l, int *arr, int len);
 Status GetElem(SqList l, int i, ElemType *e);
+
+Status InitList(SqList *l, int *arr, int len);
 Status ListInsert(SqList *L, int i, ElemType e);
 Status ListDelete(SqList *l, int i, ElemType *e);
 
