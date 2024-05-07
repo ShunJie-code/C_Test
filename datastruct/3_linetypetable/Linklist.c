@@ -1,12 +1,15 @@
 /**
  * p10 单链表的定义,与查找
- * p11 单链表的插入
+ * p11 单链表的插入,与删除
+ * p12 单链表的整表创建
 */
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include "Linklist.h"
-
+/**
+ * 头插法
+*/
 void LinkListInitHead(LinkList *L, int n)
 {
     LinkList p;
@@ -14,7 +17,12 @@ void LinkListInitHead(LinkList *L, int n)
 #if 0
     srand(time(NULL));
 #endif
-    *L = (LinkList)malloc(sizeof(Node));
+    // *L = (LinkList)malloc(sizeof(Node));
+    if ((*L) == NULL)
+    {
+        printf("%s-%d\n", __func__, __LINE__);
+        *L = (LinkList)malloc(sizeof(Node));
+    }
     (*L)->next = NULL;                           // 优先级原因所以要有括号
     for (i = 0; i < n; i++)
     {
@@ -24,6 +32,32 @@ void LinkListInitHead(LinkList *L, int n)
         p->next = (*L)->next;
         (*L)->next = p;
     }
+}
+/**
+ * 尾插法
+*/
+void LinkListInitTail(LinkList *L, int n)
+{
+    LinkList p;
+    LinkList r;
+    int i;
+    // srand(time(0));
+    if ((*L) == NULL)
+    {
+        printf("%s-%d\n", __func__, __LINE__);
+        *L = (Node *)malloc(sizeof(Node));
+    }
+    
+    r = *L;                               // r为迭代节点，指向末尾
+    for(i = 0; i < n; i++)
+    {
+        p = (Node *)malloc(sizeof(Node));
+        // p->data=rand()&100+1;
+        p->data = i;
+        r->next = p;
+        r = p;
+    }
+    r->next = NULL;
 }
 
 void LinklistShow(LinkList L)
@@ -85,6 +119,31 @@ Status LinkListInsert(LinkList *L, int i, ElemType e)
     return 0;
 }
 
+Status LinkListDelete(LinkList *L, int i, ElemType *e)
+{
+    int j;
+    LinkList p, q;
+    p = *L;
+    j = 1;
+    while (p && j < i)
+    {
+        p = p->next;
+        ++j;
+    }
+
+    if (!p || j > i)
+    {
+        return ERROR;
+    }
+    // q为 待删除节点
+    q = p->next;
+    p->next = q->next;
+
+    *e = q->data;
+    free(q);
+    return OK;
+}
+
 Status LinkListClear(LinkList *L)
 {
     LinkList p, q;
@@ -96,5 +155,26 @@ Status LinkListClear(LinkList *L)
         p = q;
     }
     (*L)->next = NULL;
+    return OK;
+}
+
+Status LinkGetMidNode(LinkList L, ElemType *e)
+{
+    LinkList search, mid;
+    mid = L;
+    search = L;
+    while (search->next != NULL)
+    {
+        if (search->next->next!=NULL)  //若能够移动两步，则动两步，否则一步
+        {
+            search = search->next->next;
+            mid = mid->next;
+        }
+        else
+        {
+            search = search->next;
+        }
+    }
+    *e = mid->data;
     return OK;
 }

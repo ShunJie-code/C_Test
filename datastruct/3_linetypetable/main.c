@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "stdlib.h"
 #include "Sqlist.h"
 #include "Linklist.h"
 
@@ -49,19 +50,51 @@ void Test2(void)
     ShowListData(ls1);
 }
 
+// 测试链式结构线性表的基础功能 
 void Test3(void)
 {
     LinkList ll;
     ElemType e;
+    // ll = NULL; // 注释后，不会malloc，因为头结点已经存在了,与80行同在
     LinkListInitHead(&ll, 10);
 
     LinklistShow(ll);
     LinkListInsert(&ll, 5, 99);
+    LinkListInsert(&ll, 8, 88);
     LinklistShow(ll);
+
+    LinkListDelete(&ll, 7, &e);
+    printf("Deleted 7th data = %d\n", e);
+    LinklistShow(ll);
+
     LinkGetElem(ll, 9, &e);
     printf("9th data = %d\n", e);
+
     LinkListClear(&ll);
     LinklistShow(ll);
+
+    LinkListInitTail(&ll, 13);
+    LinklistShow(ll);
+
+    LinkListClear(&ll);
+    // free(ll);  // free(): invalid pointer，这里不需要free，函数结束即释放，与58行同在
+}
+
+static void Test4(void)
+{
+    LinkList ll_t;
+    LinkList ll;
+    ll = NULL;
+    ll_t = NULL;
+    LinkListInitTail(&ll, 6);
+    LinklistShow(ll);
+    LinkListInitHead(&ll_t, 6);
+    LinklistShow(ll_t);
+
+    LinkListClear(&ll);
+    LinkListClear(&ll_t);
+    free(ll_t);
+    free(ll);
 }
 
 int main(void)
@@ -69,6 +102,7 @@ int main(void)
     // Test1();
     // Test2();
     Test3();
+    // Test4();
     return 0;
 }
 

@@ -13,7 +13,10 @@ typedef struct Node
 typedef struct Node *LinkList;
 
 void LinkListInitHead(LinkList *L, int n);
+void LinkListInitTail(LinkList *L, int n);
 void LinklistShow(LinkList L);
+Status LinkListClear(LinkList *L);
+
 Status LinkGetElem(LinkList L, int i, ElemType *e);
 Status LinkListInsert(LinkList *L, int i, ElemType e);
-Status LinkListClear(LinkList *L);
+Status LinkListDelete(LinkList *L, int i, ElemType *e);
