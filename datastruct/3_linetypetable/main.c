@@ -1,3 +1,12 @@
+/**
+ *                顺序存储 链式存储
+ * 查找            O(1)    O(n)
+ * 插入和删除       O(n)    O(1)
+ * 空间性能        预分配   动态申请
+ * 频繁的查找       优      差
+ * 频繁的插入删除    差      优
+*/
+
 #include <stdio.h>
 #include "stdlib.h"
 #include "Sqlist.h"

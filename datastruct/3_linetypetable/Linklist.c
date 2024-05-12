@@ -2,6 +2,7 @@
  * p10 单链表的定义,与查找
  * p11 单链表的插入,与删除
  * p12 单链表的整表创建
+ * p13 单链表的整表删除
 */
 #include <stdio.h>
 #include <stdlib.h>
