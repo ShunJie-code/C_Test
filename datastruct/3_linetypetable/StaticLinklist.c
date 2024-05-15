@@ -1,19 +1,26 @@
-//
+/**
+ *  p14 静态链表
+*/
+#include "StaticLinklist.h"
+
 Status InitList(StaticLinkList space)
 {
     int i;
-    for(i=0;i<MAXSIZE-1;i++){
-        space[i].cur=i+1;//当前数据的游标等于下一个数据的下标
+    for (i = 0; i < MAXSIZE - 1; i++)
+    {
+        space[i].cur = i + 1;              // 当前数据的游标等于下一个数据的下标
     }
-    space[MAXSIZE-1].cur=0;
+    space[MAXSIZE - 1].cur = 0;
     return OK;
 }
-
-int Malloc_SLL(StaticLink space)//获取空闲分量的下标
+/**
+ * 手动实现malloc
+*/
+int Malloc_SLL(StaticLinkList space)//获取空闲分量的下标
 {
-    int i=space[0].cur;      //找出待插入位置
-    if(space[0].cur)
-    space[0].cur=space[i].cur;//第一个元素的游标指向下一个空闲分量的下标，备用
+    int i = space[0].cur;      //找出待插入位置
+    if (space[0].cur)
+        space[0].cur = space[i].cur;//第一个元素的游标指向下一个空闲分量的下标，备用
     return i;
 }
 
