@@ -8,9 +8,11 @@
 */
 
 #include <stdio.h>
-#include "stdlib.h"
+#include <stdlib.h>
+
 #include "Sqlist.h"
 #include "Linklist.h"
+#include "StaticLinklist.h"
 
 // 测试顺序结构线性表基础功能
 void Test1(void)
@@ -67,28 +69,29 @@ void Test3(void)
     // ll = NULL; // 注释后，不会malloc，因为头结点已经存在了,与80行同在
     LinkListInitHead(&ll, 10);
 
-    LinklistShow(ll);
+    LinkListShow(ll);
     LinkListInsert(&ll, 5, 99);
     LinkListInsert(&ll, 8, 88);
-    LinklistShow(ll);
+    LinkListShow(ll);
 
     LinkListDelete(&ll, 7, &e);
     printf("Deleted 7th data = %d\n", e);
-    LinklistShow(ll);
+    LinkListShow(ll);
 
     LinkGetElem(ll, 9, &e);
     printf("9th data = %d\n", e);
 
     LinkListClear(&ll);
-    LinklistShow(ll);
+    LinkListShow(ll);
 
     LinkListInitTail(&ll, 13);
-    LinklistShow(ll);
+    LinkListShow(ll);
 
     LinkListClear(&ll);
     // free(ll);  // free(): invalid pointer，这里不需要free，函数结束即释放，与58行同在
 }
 
+// 测试链表的头插法尾插法和清空等
 static void Test4(void)
 {
     LinkList ll_t;
@@ -96,22 +99,43 @@ static void Test4(void)
     ll = NULL;
     ll_t = NULL;
     LinkListInitTail(&ll, 6);
-    LinklistShow(ll);
+    LinkListShow(ll);
     LinkListInitHead(&ll_t, 6);
-    LinklistShow(ll_t);
+    LinkListShow(ll_t);
 
     LinkListClear(&ll);
     LinkListClear(&ll_t);
     free(ll_t);
     free(ll);
 }
+/**
+ * 测试静态链表API
+*/
+static void Test5(void)
+{
+    int len;
+    int array[6] = {1, 2, 3, 4, 5, 6}; 
+    StaticLinkList sll;
 
+    SLL_Init(sll);
+    SLL_Create(sll, array, 6);
+    SLL_Show(sll);
+    SLL_Insert(sll, 3, 99);
+    SLL_Insert(sll, 8, 96);
+    SLL_Show(sll);
+    SLL_Delete(sll, 5);
+    SLL_Delete(sll, 3);
+    SLL_Show(sll);
+    len = SLL_Length(sll);
+    printf("SLL len = %d\n", len);
+}
 int main(void)
 {
     // Test1();
     // Test2();
-    Test3();
+    // Test3();
     // Test4();
+    Test5();
     return 0;
 }
 

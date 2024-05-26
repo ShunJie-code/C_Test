@@ -1,4 +1,4 @@
-#define MAXSIZE 20
+#define MAXSIZE 100
 #define OK 1
 #define ERROR 0
 #define TRUE 1
