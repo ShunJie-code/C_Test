@@ -91,16 +91,22 @@ void Test3(void)
     // free(ll);  // free(): invalid pointer，这里不需要free，函数结束即释放，与58行同在
 }
 
-// 测试链表的头插法尾插法和清空等
+// 测试链表的头插法\尾插法\清空\找中间节点等API
 static void Test4(void)
 {
     LinkList ll_t;
     LinkList ll;
+    ElemType e;
     ll = NULL;
     ll_t = NULL;
-    LinkListInitTail(&ll, 6);
+
+    LinkListInitTail(&ll, 7);
     LinkListShow(ll);
-    LinkListInitHead(&ll_t, 6);
+    LinkGetMidNode(ll, &e);
+    printf("mid of ll = %d\n", e);
+    LinkListInitHead(&ll_t, 10);
+    LinkGetMidNode(ll_t, &e);
+    printf("mid of ll_t = %d\n", e);
     LinkListShow(ll_t);
 
     LinkListClear(&ll);
@@ -122,6 +128,8 @@ static void Test5(void)
     SLL_Show(sll);
     SLL_Insert(sll, 3, 99);
     SLL_Insert(sll, 8, 96);
+    SLL_Insert(sll, 1, 98);
+
     SLL_Show(sll);
     SLL_Delete(sll, 5);
     SLL_Delete(sll, 3);
@@ -134,8 +142,8 @@ int main(void)
     // Test1();
     // Test2();
     // Test3();
-    // Test4();
-    Test5();
+    Test4();
+    // Test5();
     return 0;
 }
 

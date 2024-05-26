@@ -20,3 +20,4 @@ Status LinkListClear(LinkList *L);
 Status LinkGetElem(LinkList L, int i, ElemType *e);
 Status LinkListInsert(LinkList *L, int i, ElemType e);
 Status LinkListDelete(LinkList *L, int i, ElemType *e);
+Status LinkGetMidNode(LinkList L, ElemType *e);

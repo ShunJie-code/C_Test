@@ -1,6 +1,7 @@
 /**
  * p14 静态链表，核心是数组内数据快速插入和删除，通过cur来索引
- * p15 静态链表内存申请和释放
+ * p15 静态链表内存申请和释放,插入与删除
+ * p16 静态链表的总结，给没有指针的编程语言一种实现方法
  */
 #include <stdio.h>
 
@@ -78,7 +79,7 @@ Status SLL_Insert(StaticLinkList sll, int i, ElemType e)
     if (j)
     {
         sll[j].data = e;
-        for (l = 1; l <= i - 1; l++)
+        for (l = 1; l < i; l++)
         {
             k = sll[k].cur;
         }

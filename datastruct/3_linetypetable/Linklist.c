@@ -3,6 +3,7 @@
  * p11 单链表的插入,与删除
  * p12 单链表的整表创建
  * p13 单链表的整表删除，链表和数组优缺点对比
+ * p16 快速找到未知长度单链表的中间节点
 */
 #include <stdio.h>
 #include <stdlib.h>
@@ -159,6 +160,7 @@ Status LinkListClear(LinkList *L)
     return OK;
 }
 
+// 长短步方法，快速找到中间的节点
 Status LinkGetMidNode(LinkList L, ElemType *e)
 {
     LinkList search, mid;
@@ -166,15 +168,15 @@ Status LinkGetMidNode(LinkList L, ElemType *e)
     search = L;
     while (search->next != NULL)
     {
-        if (search->next->next!=NULL)  //若能够移动两步，则动两步，否则一步
+        if (search->next->next != NULL)  //若能够移动两步，则动两步，否则一步
         {
             search = search->next->next;
-            mid = mid->next;
         }
         else
         {
             search = search->next;
         }
+        mid = mid->next;
     }
     *e = mid->data;
     return OK;
