@@ -12,8 +12,7 @@ typedef struct CLinkList
 } node;
 
 /************************************************************************/
-/* 操作                                                                  */
-/************************************************************************/
+/* 操作 */
 
 /*初始化循环链表*/
 void ds_init(node **pNode)
@@ -22,18 +21,21 @@ void ds_init(node **pNode)
     node *temp;
     node *target;
 
-    printf("输入结点的值，输入0完成初始化\n");
+    printf("请输入结点的值，输入0完成初始化：\n");
 
     while (1)
     {
         scanf("%d", &item);
-        fflush(stdin);
+        /*在获取关键输入之前清除残留输入：在某些情况下，你可能希望在获取一个关键输入之前清除之前可能遗留的不相关输入。
+        但请注意，这种用法可能并不总是可靠的，因为fflush(stdin)的行为在不同的系统和编译器中可能不一致。*/
+        // fflush(stdin);
 
         if (item == 0)
             return;
 
-        if ((*pNode) == NULL)
-        { /*循环链表中只有一个结点*/
+        if (*pNode == NULL)
+        {
+            /*循环链表中只有一个结点*/
             *pNode = (node *)malloc(sizeof(struct CLinkList));
             if (!(*pNode))
                 exit(0);
@@ -43,15 +45,18 @@ void ds_init(node **pNode)
         else
         {
             /*找到next指向第一个结点的结点*/
-            for (target = (*pNode); target->next != (*pNode); target = target->next)
-                ;
+            target = *pNode;
+            while (target->next != *pNode)
+            {
+                target = target->next;
+            }
 
             /*生成一个新的结点*/
             temp = (node *)malloc(sizeof(struct CLinkList));
 
             if (!temp)
                 exit(0);
-
+            // 类似尾插法
             temp->data = item;
             temp->next = *pNode;
             target->next = temp;
@@ -73,19 +78,21 @@ void ds_insert(node **pNode, int i)
     scanf("%d", &item);
 
     if (i == 1)
-    { // 新插入的结点作为第一个结点
+    {
+        // 新插入的结点作为第一个结点
         temp = (node *)malloc(sizeof(struct CLinkList));
 
         if (!temp)
             exit(0);
 
-        temp->data = item;
-
         /*寻找到最后一个结点*/
-        for (target = (*pNode); target->next != (*pNode); target = target->next)
-            ;
-
-        temp->next = (*pNode);
+        target = *pNode;
+        while (target->next != *pNode)
+        {
+            target = target->next;
+        }
+        temp->data = item;
+        temp->next = *pNode;
         target->next = temp;
         *pNode = temp;
     }
@@ -115,13 +122,17 @@ void ds_delete(node **pNode, int i)
 {
     node *target;
     node *temp;
-    int j = 1;
+    int j;
 
     if (i == 1)
-    { // 删除的是第一个结点
+    {
+        // 删除的是第一个结点
         /*找到最后一个结点*/
-        for (target = *pNode; target->next != *pNode; target = target->next)
-            ;
+        target = *pNode;
+        while (target->next != *pNode)
+        {
+            target = target->next;
+        }
 
         temp = *pNode;
         *pNode = (*pNode)->next;
@@ -130,13 +141,12 @@ void ds_delete(node **pNode, int i)
     }
     else
     {
+        // 删除其他节点
         target = *pNode;
-
-        for (; j < i - 1; ++j)
+        for (j = 1; j < i - 1; ++j)
         {
             target = target->next;
         }
-
         temp = target->next;
         target->next = temp->next;
         free(temp);
@@ -175,6 +185,11 @@ void ds_traverse(node *pNode)
     printf("\n");
 }
 
+static void MessageShow(void)
+{
+    printf("1.初始化链表 \n2.插入结点 \n3.删除结点 \n4.返回结点位置 \n5.遍历链表  \n0.退出 \n请选择你的操作：");
+}
+
 int main()
 {
     node *pHead = NULL;
@@ -182,7 +197,7 @@ int main()
     int find;
 
     printf("----------------------------循环链表小程序--------------------\n\n");
-    printf("1.初始化链表 \n2.插入结点 \n3.删除结点 \n4.返回结点位置 \n5.遍历链表  \n0.退出 \n请选择你的操作：");
+    MessageShow();
     while (opp != '0')
     {
         scanf("%hd", &opp);
@@ -195,7 +210,7 @@ int main()
             break;
 
         case 2:
-            printf("输入需要插入结点的位置？");
+            printf("输入需要插入结点的位置: ");
             scanf("%d", &find);
             ds_insert(&pHead, find);
             printf("在位置%d插入值后：\n", find);
@@ -213,10 +228,9 @@ int main()
             break;
 
         case 4:
-            printf("你要查找倒数第几个结点的值？");
+            printf("你要查找哪个值的位置:");
             scanf("%d", &find);
             printf("元素%d所在位置：%d\n", find, ds_search(pHead, find));
-            // ListTraverse(L);
             printf("\n");
             break;
 
@@ -228,8 +242,10 @@ int main()
         case 0:
             printf("Good bye!\n");
             exit(0);
+            
         default:
             printf("Please enter a available number again\n");
+            MessageShow();
         }
     }
 
