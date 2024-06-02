@@ -1,5 +1,6 @@
 /**
  * p17 循环链表
+ * p18 约瑟夫问题
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -44,7 +45,7 @@ void ds_init(node **pNode)
         }
         else
         {
-            /*找到next指向第一个结点的结点*/
+            /* 找到next指向第一个结点的结点,尾节点 */
             target = *pNode;
             while (target->next != *pNode)
             {
@@ -64,8 +65,8 @@ void ds_init(node **pNode)
     }
 }
 
-/*插入结点*/
-/*参数：链表的第一个结点，插入的位置*/
+/*插入结点
+ *参数：链表的第一个结点，插入的位置*/
 void ds_insert(node **pNode, int i)
 {
     node *temp;
@@ -190,7 +191,7 @@ static void MessageShow(void)
     printf("1.初始化链表 \n2.插入结点 \n3.删除结点 \n4.返回结点位置 \n5.遍历链表  \n0.退出 \n请选择你的操作：");
 }
 
-int main()
+static void Test1(void)
 {
     node *pHead = NULL;
     short opp;
@@ -242,12 +243,74 @@ int main()
         case 0:
             printf("Good bye!\n");
             exit(0);
-            
+
         default:
             printf("Please enter a available number again\n");
             MessageShow();
         }
     }
+}
 
+struct CLinkList *CLL_Create(int n)
+{
+    node *p;
+    node *head;
+    node *newNode;
+    int i;
+
+    if (n > 0)
+    {
+        i = 1;
+        head = (node *)malloc(sizeof(node));
+        head->data = i;
+        p = head;
+
+        while (i < n)
+        {
+            i++;
+            newNode = (node *)malloc(sizeof(node));
+            newNode->data = i;
+            p->next = newNode;
+            p = newNode;
+        }
+        newNode->next = head;
+        return head;
+    }
+    else
+    {
+        return NULL;
+    }
+}
+/**
+ * 约瑟夫问题
+*/
+void Test2(void)
+{
+    int n = 41;
+    int m = 3;
+    struct CLinkList *p;
+    node *temp;
+    p = CLL_Create(n);
+    ds_traverse(p);
+    while (p != p->next)
+    {
+        for (int i = 1; i < m - 1; i++)
+        {
+            // printf("%s-%d: i = %d, m = %d\n", __func__, __LINE__, i, m);
+            p = p->next;
+        }
+        printf("%2d->", p->next->data);
+        temp = p->next;
+        p->next = temp->next;
+        free(temp);
+        p = p->next;
+    }
+    printf("%2d\n", p->data);  // 最后两个元素 16 31
+}
+
+int main(void)
+{
+    // Test1();
+    Test2();
     return 0;
 }
