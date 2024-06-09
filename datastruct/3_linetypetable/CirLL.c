@@ -1,7 +1,12 @@
 /**
  * p17 循环链表
- * p18 约瑟夫问题
+ * p18 算法：约瑟夫问题
+ * p19 使用尾节点表示循环链表，可快速找到尾节点，实现双链表的合并
+ * p19 算法：判断单链表是否有环
+ * p20 算法：魔术师发牌问题
+ * p20 算法：拉丁方阵问题
  */
+#include "CirLL.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -191,7 +196,7 @@ static void MessageShow(void)
     printf("1.初始化链表 \n2.插入结点 \n3.删除结点 \n4.返回结点位置 \n5.遍历链表  \n0.退出 \n请选择你的操作：");
 }
 
-static void Test1(void)
+void CLL_App(void)
 {
     node *pHead = NULL;
     short opp;
@@ -251,7 +256,7 @@ static void Test1(void)
     }
 }
 
-struct CLinkList *CLL_Create(int n)
+static struct CLinkList *CLL_Create(int n)
 {
     node *p;
     node *head;
@@ -281,10 +286,11 @@ struct CLinkList *CLL_Create(int n)
         return NULL;
     }
 }
+
 /**
  * 约瑟夫问题
 */
-void Test2(void)
+void Josephus(void)
 {
     int n = 41;
     int m = 3;
@@ -294,9 +300,9 @@ void Test2(void)
     ds_traverse(p);
     while (p != p->next)
     {
+        // 找到要删除元素的前一个元素
         for (int i = 1; i < m - 1; i++)
         {
-            // printf("%s-%d: i = %d, m = %d\n", __func__, __LINE__, i, m);
             p = p->next;
         }
         printf("%2d->", p->next->data);
@@ -306,11 +312,4 @@ void Test2(void)
         p = p->next;
     }
     printf("%2d\n", p->data);  // 最后两个元素 16 31
-}
-
-int main(void)
-{
-    // Test1();
-    Test2();
-    return 0;
 }

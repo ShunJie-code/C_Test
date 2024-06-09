@@ -10,11 +10,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "Sqlist.h"
-#include "Linklist.h"
-#include "StaticLinklist.h"
+#include "Sqlist.h"                 // 顺序存储结构线性表
+#include "Linklist.h"               // 链式存储结构线性表
+#include "StaticLinklist.h"         // 静态链表
+#include "CirLL.h"                  // 循环链表
+#include "DoubLinkList.h"           // 双向链表
 
-// 测试顺序结构线性表基础功能
+// 1 测试顺序结构线性表基础功能
 void Test1(void)
 {
     printf("%d-%s:\n", __LINE__, __func__);
@@ -45,7 +47,7 @@ void Test1(void)
         printf("Please check your param\n");
 }
 
-// 测试两个求并集
+// 2 测试两个线性表求并集
 void Test2(void)
 {
     printf("%d-%s:\n", __LINE__, __func__);
@@ -61,7 +63,7 @@ void Test2(void)
     ShowListData(ls1);
 }
 
-// 测试链式结构线性表的基础功能 
+// 3 测试链式结构线性表的基础功能 
 void Test3(void)
 {
     LinkList ll;
@@ -91,7 +93,7 @@ void Test3(void)
     // free(ll);  // free(): invalid pointer，这里不需要free，函数结束即释放，与58行同在
 }
 
-// 测试链表的头插法\尾插法\清空\找中间节点等API
+// 4 测试链表的头插法\尾插法\清空\找中间节点等API
 static void Test4(void)
 {
     LinkList ll_t;
@@ -114,9 +116,8 @@ static void Test4(void)
     free(ll_t);
     free(ll);
 }
-/**
- * 测试静态链表API
-*/
+
+// 5 测试静态链表API
 static void Test5(void)
 {
     int len;
@@ -137,13 +138,30 @@ static void Test5(void)
     len = SLL_Length(sll);
     printf("SLL len = %d\n", len);
 }
+
+// 6 测试循环链表，约瑟夫问题
+static void Test6(void)
+{
+    // Josephus();
+    CLL_App();
+}
+
+static void Test7(void)
+{
+    DuLinkList dll;
+    DLL_Init(&dll);
+    DLL_ShowList(dll);
+}
+
 int main(void)
 {
     // Test1();
     // Test2();
     // Test3();
-    Test4();
+    // Test4();
     // Test5();
+    // Test6();
+    Test7();
     return 0;
 }
 
