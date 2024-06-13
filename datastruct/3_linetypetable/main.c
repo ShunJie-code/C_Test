@@ -146,10 +146,15 @@ static void Test6(void)
     CLL_App();
 }
 
+// 7 测试双向链表，凯撒问题
 static void Test7(void)
 {
     DuLinkList dll;
     DLL_Init(&dll);
+    DLL_ShowList(dll);
+    Caesar(&dll, 3);
+    DLL_ShowList(dll);
+    Caesar(&dll, -5);
     DLL_ShowList(dll);
 }
 

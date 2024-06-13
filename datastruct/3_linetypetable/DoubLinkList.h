@@ -9,4 +9,6 @@ typedef struct DualNode
 
 Status DLL_Init(DuLinkList *l);
 
-void DLL_ShowList(DuLinkList l);
+void DLL_ShowList(DuLinkList const l);
+
+void Caesar(DuLinkList *l, int i);
