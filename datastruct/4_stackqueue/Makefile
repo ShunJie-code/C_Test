@@ -1,2 +1,2 @@
-hello: main.c | Makefile
-	gcc -o main main.c
+hello: main.c stackapi.c | Makefile
+	gcc -o main main.c stackapi.c
