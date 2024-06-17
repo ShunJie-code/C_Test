@@ -15,10 +15,10 @@ void StackInit(SqStack *s)
     s->stackSize = STACK_INIT_SIZE;
 }
 
+// 注意这种压栈的方法，栈顶没有值
 void StackPush(SqStack *s, ElemType e)
 {
     // 如果栈满，追加空间
-    s->top++;
     if (s->top - s->base >= s->stackSize)
     {
         s->base = (ElemType *)realloc(s->base, (s->stackSize + STACKINCREMENT) * sizeof(ElemType));
@@ -29,15 +29,32 @@ void StackPush(SqStack *s, ElemType e)
         s->stackSize = s->stackSize + STACKINCREMENT; // 设置栈的最大容量
     }
     *(s->top) = e;
+    s->top++;
 }
 
-void StackPop(SqStack *s, ElemType *e)
+Status StackPop(SqStack *s, ElemType *e)
 {
     if (s->top == s->base)  
     {
-        printf("Stack is empty!\n");
-        return;
+        printf("\n---Stack is empty!---\n");
+        return ERROR;
     }
-    *e = *s->top;
     s->top--;
+    *e = *s->top;
+    return SUCCESS;
+}
+
+void StackClear(SqStack *s)
+{
+
+}
+
+void StackDestroy(SqStack *s)
+{
+
+}
+
+void StackLen(SqStack s)
+{
+    
 }

@@ -8,17 +8,23 @@ void Test1(void)
 
     printf("%s_%d: \n", __func__, __LINE__);
     StackInit(&sta);
+    // 测试压栈
     for (int i = 0; i < 30; i++)
     {
         StackPush(&sta, i);
     }
-    for (int j = 0; j < 31; j++)
+    // 测试出栈
+    for (int j = 0; j < 39; j++)
     {
-        StackPop(&sta, &e);
-        printf("%d ", e);
+        if (StackPop(&sta, &e) == SUCCESS)
+        {
+            printf("%d ", e);
+        }
+        else {
+            break;
+        }
     }
     putchar('\n');
-    
     
 }
 

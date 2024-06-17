@@ -1,4 +1,4 @@
-typedef int ElemType;
+#include "common4.h"
 
 typedef struct
 {
@@ -9,5 +9,5 @@ typedef struct
 
 void StackInit(SqStack *s);
 void StackPush(SqStack *s, ElemType e);
-void StackPop(SqStack *s, ElemType *e);
+Status StackPop(SqStack *s, ElemType *e);
 
