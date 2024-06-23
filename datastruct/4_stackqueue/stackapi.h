@@ -11,3 +11,9 @@ void StackInit(SqStack *s);
 void StackPush(SqStack *s, ElemType e);
 Status StackPop(SqStack *s, ElemType *e);
 
+/**
+ * 返回栈的长度
+ */
+int StackLen(SqStack s);
+void StackClear(SqStack *s);
+void StackDestroy(SqStack *s);

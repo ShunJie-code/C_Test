@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "stackdefine.h"
+#include "stackapi.h"
 #define STACK_INIT_SIZE 10
 #define STACKINCREMENT 10
 
@@ -46,15 +46,24 @@ Status StackPop(SqStack *s, ElemType *e)
 
 void StackClear(SqStack *s)
 {
-
+    s->top = s->base;
 }
 
 void StackDestroy(SqStack *s)
 {
-
+    int i, len;
+    len = s->stackSize;
+    for (i = 0; i < len; i++)
+    {
+        free(s->base);
+        s->base++;
+    }
+    s->base = NULL;
+    s->top = NULL;
+    s->stackSize = 0;
 }
 
-void StackLen(SqStack s)
+int StackLen(SqStack s)
 {
-    
+    return s.top - s.base;
 }

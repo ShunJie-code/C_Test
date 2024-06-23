@@ -1,9 +1,10 @@
 #include <stdio.h>
-#include "stackdefine.h"
+#include "stackapi.h"
 
 void Test1(void)
 {
     SqStack sta;
+    int staLen;
     int e;
 
     printf("%s_%d: \n", __func__, __LINE__);
@@ -13,6 +14,9 @@ void Test1(void)
     {
         StackPush(&sta, i);
     }
+    // 测试读取栈的长度
+    staLen = StackLen(sta);
+    printf("%d: Stack length is %d\n", __LINE__, staLen);
     // 测试出栈
     for (int j = 0; j < 39; j++)
     {
@@ -25,7 +29,9 @@ void Test1(void)
         }
     }
     putchar('\n');
-    
+    // 全部出栈后，栈长度为0
+    staLen = StackLen(sta);
+    printf("%d: Stack length is %d\n", __LINE__, staLen);
 }
 
 int main(void)
