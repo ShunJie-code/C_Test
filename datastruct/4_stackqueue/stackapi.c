@@ -34,7 +34,7 @@ void StackPush(SqStack *s, ElemType e)
 
 Status StackPop(SqStack *s, ElemType *e)
 {
-    if (s->top == s->base)  
+    if (s->top == s->base)
     {
         printf("\n---Stack is empty!---\n");
         return ERROR;
@@ -55,8 +55,25 @@ void StackDestroy(SqStack *s)
     len = s->stackSize;
     for (i = 0; i < len; i++)
     {
+        printf("i = %d, *(s->base) = %d\n", i, *(s->base));
+        printf("i = %d, *(s->base+1) = %d\n", i, *(s->base + 1));
+        printf("%d: addr = %p\n", __LINE__, s->base);
+        // 事实上，realloc的内存也只需要free一次即可
         free(s->base);
-        s->base++;
+        if (1)
+        {
+            printf("%d: addr = %p\n", __LINE__, s->base);
+            printf("%d: addr = %p\n", __LINE__, s->base + 1);
+        
+            printf("i = %d, *(s->base) = %d, Stack is free!\n", i, *(s->base));
+            printf("i = %d, *(s->base+1) = %d, Stack is free!\n", i, *(s->base + 1));
+            printf("i = %d, *(s->base+2) = %d, Stack is free!\n", i, *(s->base + 2));
+            printf("i = %d, *(s->base+3) = %d, Stack is free!\n", i, *(s->base + 3));
+            printf("i = %d, *(s->base+4) = %d, Stack is free!\n", i, *(s->base + 4));
+            break;     
+        }
+        (s->base) += 4;
+
     }
     s->base = NULL;
     s->top = NULL;

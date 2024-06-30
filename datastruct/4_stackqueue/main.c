@@ -1,3 +1,6 @@
+/**
+ * 24
+ */
 #include <stdio.h>
 #include "stackapi.h"
 
@@ -24,7 +27,8 @@ void Test1(void)
         {
             printf("%d ", e);
         }
-        else {
+        else
+        {
             break;
         }
     }
@@ -32,7 +36,16 @@ void Test1(void)
     // 全部出栈后，栈长度为0
     staLen = StackLen(sta);
     printf("%d: Stack length is %d\n", __LINE__, staLen);
+    StackDestroy(&sta);
+    if (sta.base == NULL &&
+        sta.top == NULL &&
+        sta.stackSize == 0)
+    {
+        printf("StackDestroy is finished!\n");
+    }
 }
+
+// 利用栈的数据结构的特点，将二进制数转换为十进制数
 
 int main(void)
 {
