@@ -1,5 +1,6 @@
 /**
- * 24
+ * 24 栈的清除和释放
+ * 25 使用栈进制转换
  */
 #include <stdio.h>
 #include "stackapi.h"
@@ -7,8 +8,8 @@
 void Test1(void)
 {
     SqStack sta;
+    ElemType e;
     int staLen;
-    int e;
 
     printf("%s_%d: \n", __func__, __LINE__);
     StackInit(&sta);

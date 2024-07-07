@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "stackapi.h"
-#define STACK_INIT_SIZE 10
+#define STACK_INIT_SIZE 20
 #define STACKINCREMENT 10
 
 void StackInit(SqStack *s)
@@ -24,7 +24,7 @@ void StackPush(SqStack *s, ElemType e)
         s->base = (ElemType *)realloc(s->base, (s->stackSize + STACKINCREMENT) * sizeof(ElemType));
         if (!s->base)
             exit(0);
-        printf("Realloc stack!\n");
+        // printf("Realloc stack!\n");
         s->top = s->base + s->stackSize;              // 设置栈顶
         s->stackSize = s->stackSize + STACKINCREMENT; // 设置栈的最大容量
     }
@@ -36,7 +36,7 @@ Status StackPop(SqStack *s, ElemType *e)
 {
     if (s->top == s->base)
     {
-        printf("\n---Stack is empty!---\n");
+        // printf("\n---Stack is empty!---\n");
         return ERROR;
     }
     s->top--;
@@ -51,30 +51,8 @@ void StackClear(SqStack *s)
 
 void StackDestroy(SqStack *s)
 {
-    int i, len;
-    len = s->stackSize;
-    for (i = 0; i < len; i++)
-    {
-        printf("i = %d, *(s->base) = %d\n", i, *(s->base));
-        printf("i = %d, *(s->base+1) = %d\n", i, *(s->base + 1));
-        printf("%d: addr = %p\n", __LINE__, s->base);
-        // 事实上，realloc的内存也只需要free一次即可
-        free(s->base);
-        if (1)
-        {
-            printf("%d: addr = %p\n", __LINE__, s->base);
-            printf("%d: addr = %p\n", __LINE__, s->base + 1);
-        
-            printf("i = %d, *(s->base) = %d, Stack is free!\n", i, *(s->base));
-            printf("i = %d, *(s->base+1) = %d, Stack is free!\n", i, *(s->base + 1));
-            printf("i = %d, *(s->base+2) = %d, Stack is free!\n", i, *(s->base + 2));
-            printf("i = %d, *(s->base+3) = %d, Stack is free!\n", i, *(s->base + 3));
-            printf("i = %d, *(s->base+4) = %d, Stack is free!\n", i, *(s->base + 4));
-            break;     
-        }
-        (s->base) += 4;
-
-    }
+    // 事实上，realloc的内存也只需要free一次即可
+    free(s->base);
     s->base = NULL;
     s->top = NULL;
     s->stackSize = 0;
