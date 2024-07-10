@@ -9,6 +9,7 @@ void StackInit(SqStack *s)
     s->base = (ElemType *)malloc(STACK_INIT_SIZE * sizeof(ElemType));
     if (s->base == NULL)
     {
+        perror("malloc Failed");
         exit(0);
     }
     s->top = s->base;
@@ -23,7 +24,11 @@ void StackPush(SqStack *s, ElemType e)
     {
         s->base = (ElemType *)realloc(s->base, (s->stackSize + STACKINCREMENT) * sizeof(ElemType));
         if (!s->base)
+        {
+            perror("realloc Failed");
             exit(0);
+        }
+            
         // printf("Realloc stack!\n");
         s->top = s->base + s->stackSize;              // 设置栈顶
         s->stackSize = s->stackSize + STACKINCREMENT; // 设置栈的最大容量

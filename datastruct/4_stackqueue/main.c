@@ -5,8 +5,10 @@
 #include <stdio.h>
 #include "stackapi.h"
 
-void Test1(void)
+
+static void Test1(void)
 {
+#ifdef INT_TYPE
     SqStack sta;
     ElemType e;
     int staLen;
@@ -44,12 +46,22 @@ void Test1(void)
     {
         printf("StackDestroy is finished!\n");
     }
+#endif
 }
 
 // 利用栈的数据结构的特点，将二进制数转换为十进制数
+static void Test2(void)
+{
+    ElemType c;
+    SqStack s;
+    StackInit(&s);
+    printf("请输入二进制数，输入为#表示结束：\n");
+    scanf("%c", &c);
+}
 
 int main(void)
 {
     Test1();
+    Test2();
     return 0;
 }
