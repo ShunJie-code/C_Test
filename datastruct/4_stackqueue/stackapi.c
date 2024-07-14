@@ -29,7 +29,7 @@ void StackPush(SqStack *s, ElemType e)
             exit(0);
         }
             
-        // printf("Realloc stack!\n");
+        printf("Realloc stack!\n");
         s->top = s->base + s->stackSize;              // 设置栈顶
         s->stackSize = s->stackSize + STACKINCREMENT; // 设置栈的最大容量
     }
@@ -41,7 +41,7 @@ Status StackPop(SqStack *s, ElemType *e)
 {
     if (s->top == s->base)
     {
-        // printf("\n---Stack is empty!---\n");
+        printf("\n---Stack is empty!---\n");
         return ERROR;
     }
     s->top--;
