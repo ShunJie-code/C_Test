@@ -8,8 +8,8 @@
 #define FALSE 0
 
 // #define CHAR_TYPE
-// #define INT_TYPE
-#define DOUBLE_TYPE
+#define INT_TYPE
+// #define DOUBLE_TYPE
 
 #ifdef INT_TYPE
 typedef int ElemType;

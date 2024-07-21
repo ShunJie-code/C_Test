@@ -5,6 +5,9 @@
 #define _FUNCTIONS_H_
 
 void PrintHello(void);
+/**
+ * 递归函数
+ */
 int Factorial(int n);
 
 #endif

@@ -12,6 +12,7 @@
 #include <ctype.h>
 #include "sequencestack.h"
 #include "linkstack.h"
+#include "linkqueue.h"
 
 static void Test1(void)
 {
@@ -306,11 +307,52 @@ static void Test4(void)
     }
 }
 
+// 测试链队列
+static void Test5(void)
+{
+    LinkQueue q;
+    LQInit(&q);
+    ElemType e;
+    int queueLen;
+
+    printf("%s_%d: \n", __func__, __LINE__);
+    // 测试入队列
+    for (int i = 0; i < 30; i++)
+    {
+        LQEnter(&q, i);
+    }
+    // 测试读取队列的长度
+    queueLen = LQGetLen(q);
+    printf("%d: Queue length is %d\n", __LINE__, queueLen);
+    // 测试出队列
+    for (int j = 0; j < 39; j++)
+    {
+        if (LQOut(&q, &e) == SUCCESS)
+            printf("%d ", e);
+        else
+            break;
+    }
+    putchar('\n');
+    // 全部出栈后，栈长度为0
+    queueLen = LQGetLen(q);
+    printf("%d: Queue length is %d\n", __LINE__, queueLen);
+    LQDestroy(&q);
+    if (q.front == NULL && q.rear == NULL)
+    {
+        printf("LQDestroy is finished!\n");
+    }
+    queueLen = LQGetLen(q);
+    printf("%d: Queue length is %d\n", __LINE__, queueLen);
+}
+
+
+
 int main(void)
 {
     // Test1();
     // Test2();
     // Test3();
-    Test4();
+    // Test4();
+    Test5();
     return 0;
 }

@@ -4,5 +4,5 @@ using namespace std;
 
 void PrintHello(void)
 {
-    cout<< __FILE__<< "\thello world!"<< endl; 
+    cout << __FILE__ << "\thello world!" << endl;
 }
