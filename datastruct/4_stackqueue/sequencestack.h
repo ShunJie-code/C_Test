@@ -1,3 +1,5 @@
+#ifndef _SEQUENCESTACK_H_
+#define _SEQUENCESTACK_H_
 #include "common4.h"
 
 typedef struct
@@ -17,3 +19,5 @@ Status StackPop(SqStack *s, ElemType *e);
 int StackLen(SqStack s);
 void StackClear(SqStack *s);
 void StackDestroy(SqStack *s);
+
+#endif

@@ -8,12 +8,15 @@
 #define FALSE 0
 
 // #define CHAR_TYPE
-#define INT_TYPE
+// #define INT_TYPE
+#define DOUBLE_TYPE
 
 #ifdef INT_TYPE
 typedef int ElemType;
 #elif defined CHAR_TYPE
 typedef char ElemType;
+#elif defined DOUBLE_TYPE
+typedef double ElemType;
 #endif
 
 typedef int Status;

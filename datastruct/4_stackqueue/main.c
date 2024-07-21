@@ -2,10 +2,15 @@
  * 24 栈的清除和释放
  * 25 使用栈进制转换
  * 26 栈的链式存储结构
+ * 27 逆波兰计算器
+ * 28 培养高级思维，中缀表达式转化为后缀表达式
+ * 29 中缀表达式转化为后缀表达式
  */
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
-#include "stackapi.h"
+#include <ctype.h>
+#include "sequencestack.h"
 #include "linkstack.h"
 
 static void Test1(void)
@@ -81,7 +86,7 @@ static void Test2(void)
 #endif
 }
 
-// 逆波兰计算器
+// 链栈的测试
 static void Test3()
 {
 #ifdef INT_TYPE
@@ -118,10 +123,194 @@ static void Test3()
 #endif
 }
 
+// 逆波兰计算器，同时支持小数点
+static Status ReversePolishCalculator(void)
+{
+#ifdef DOUBLE_TYPE
+    SqStack s;
+    ElemType e1, e2;
+    ElemType e;
+    int i;
+    char c;
+    char str[MAXSIZE];    // 缓冲区，接受输入的数字
+
+    StackInit(&s);
+
+    printf("请按逆波兰表达式输入待计算表达式，数据与运算符号用空格隔开:\n");
+    scanf("%c", &c);
+    while (c != '\n')
+    {
+        // 将表达式中的数字压入栈内
+        while (isdigit(c) || c == '.')
+        {
+            str[i++] = c;
+            str[i] = '\0';
+            if (i >= MAXSIZE)
+            {
+                printf("输入数据过大，超出缓冲区\n");
+                return ERROR;
+            }
+            scanf("%c", &c);
+            if (c == ' ')
+            {
+                e = atof(str);
+                StackPush(&s, e);
+                i = 0;
+                break;
+            }
+        }
+        
+        switch (c)
+        {
+        case '+':
+            StackPop(&s, &e1);
+            StackPop(&s, &e2);
+            StackPush(&s, e1 + e2);
+            break;
+        case '-':
+            StackPop(&s, &e1);
+            StackPop(&s, &e2);
+            StackPush(&s, e2 - e1);
+            break;
+        case '*':
+            StackPop(&s, &e1);
+            StackPop(&s, &e2);
+            StackPush(&s, e2 * e1);
+            break;
+        case '/':
+            StackPop(&s, &e1);
+            StackPop(&s, &e2);
+            if (e1 != 0)
+            {
+                StackPush(&s, e2 / e1);
+            }
+            else
+            {
+                printf("除数不能为0!\n");
+                return ERROR;
+            }
+            break;
+        default:
+            break;
+        }
+        scanf("%c", &c);
+    }
+    StackPop(&s, &e);
+    printf("计算结果为：%f\n", e);
+#endif
+    return SUCCESS;
+}
+
+// 中缀输入法转化为后缀输入法
+static Status Infix2Suffix(void)
+{
+#ifdef CHAR_TYPE
+    SqStack s;
+    ElemType e;
+    ElemType c;
+    unsigned short flag;
+    StackInit(&s);
+    printf("请输入中缀表达式：\n");
+    scanf("%c", &c);
+    printf("对应的后缀表达式：\n");
+    while (c != '\n')
+    {
+        flag = 1;
+        while (c >= '0' && c <= '9')
+        {
+            putchar(c);
+            scanf("%c", &c);
+            if (c == '.' && flag == 1)
+            {
+                putchar(c);
+                scanf("%c", &c);
+                flag = 0;
+            }
+            if (c < '0' || c > '9')
+            {
+                putchar(' ');
+            }
+        }   
+        
+        if (')' == c)
+        {
+            StackPop(&s, &e);
+            while (e != '(')
+            {
+                printf("%c ", e);
+                StackPop(&s, &e);
+            }
+        }
+        else if ('+' == c || '-' == c)
+        {
+            if (StackLen(s) == 0)
+            {
+                StackPush(&s, c);
+            }
+            else
+            {
+                do
+                {
+                    StackPop(&s, &e);
+                    if ('(' == e)
+                    {
+                        StackPush(&s, e);
+                    }
+                    else
+                    {
+                        printf("%c ", e);
+                    }
+                } while (StackLen(s) && '(' != e);
+                StackPush(&s, c);
+            }
+        }
+        else if ('*' == c || '/' == c || '(' == c)
+        {
+            StackPush(&s, c);
+        }
+        else if ('\n' == c)
+        {
+            break;
+        }
+        else
+        {
+            printf("用户输入出错\n");
+            return ERROR;
+        }
+        scanf("%c", &c);
+    }
+    while (StackLen(s) != 0)
+    {
+        StackPop(&s, &e);
+        printf("%c ", e);
+    }
+    putchar('\n');
+#endif
+    return SUCCESS;
+}
+
+static void Test4(void)
+{
+    Status ret;
+    ret = Infix2Suffix();
+    if (ret != SUCCESS)
+    {
+        printf("中缀表达式转化为后缀表达式失败\n");
+        return;
+    }
+    ret = ReversePolishCalculator();
+    if (ret != SUCCESS)
+    {
+        printf("逆波兰计算器计算失败\n");
+        return;
+    }
+}
+
 int main(void)
 {
     // Test1();
     // Test2();
-    Test3();
+    // Test3();
+    Test4();
     return 0;
 }

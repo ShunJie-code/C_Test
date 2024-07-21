@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "stackapi.h"
+#include "sequencestack.h"
 #define STACK_INIT_SIZE 20
 #define STACKINCREMENT 10
 
