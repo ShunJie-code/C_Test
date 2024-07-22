@@ -34,9 +34,21 @@ void Test2(void)
     printf("double MAX(a, b) = %f\n", double_c);
 }
 
+static void Test3(void)
+{
+    printf("hello boy!\n");
+    char c = getchar();
+    printf("---c = %c---\n", c);
+    int i = sqrt(169);
+    printf("---sqrt i = %d---\n", i);
+    i = pow(10, 2);
+    printf("---pow i = %d---\n", i);
+}
+
 int main()
 {
     Test1();
     Test2();
+    Test3();
     return 0;
 }
