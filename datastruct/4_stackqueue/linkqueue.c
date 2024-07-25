@@ -64,7 +64,7 @@ void LQDestroy(LinkQueue *q)
 
 int LQGetLen(LinkQueue q)
 {
-    int len = 0;
+    int len = -1;
     QueuePtr p = q.front;
     while (p != NULL)
     {
