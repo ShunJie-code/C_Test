@@ -345,8 +345,6 @@ static void Test5(void)
     printf("%d: Queue length is %d\n", __LINE__, queueLen);
 }
 
-
-
 int main(void)
 {
     // Test1();
