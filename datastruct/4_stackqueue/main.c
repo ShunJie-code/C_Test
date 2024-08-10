@@ -5,6 +5,8 @@
  * 27 逆波兰计算器
  * 28 培养高级思维，中缀表达式转化为后缀表达式
  * 29 中缀表达式转化为后缀表达式
+ * 30 队列的链式存储结构
+ * 31 队列的顺序存储结构
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -322,7 +324,7 @@ static void Test5(void)
         LQEnter(&q, i);
     }
     // 测试读取队列的长度
-    queueLen = LQGetLen(q);
+    queueLen = LQGetLen(&q);
     printf("%d: Queue length is %d\n", __LINE__, queueLen);
     // 测试出队列
     for (int j = 0; j < 39; j++)
@@ -334,23 +336,43 @@ static void Test5(void)
     }
     putchar('\n');
     // 全部出栈后，栈长度为0
-    queueLen = LQGetLen(q);
+    queueLen = LQGetLen(&q);
     printf("%d: Queue length is %d\n", __LINE__, queueLen);
     LQDestroy(&q);
     if (q.front == NULL && q.rear == NULL)
-    {
         printf("LQDestroy is finished!\n");
-    }
-    queueLen = LQGetLen(q);
-    printf("%d: Queue length is %d\n", __LINE__, queueLen);
 }
 
-int main(void)
+// main 可以输入若干参数
+int main(int argc, char *argv[])
 {
-    // Test1();
-    // Test2();
-    // Test3();
-    // Test4();
-    Test5();
+    int testNum = 0;
+    for (int i = 0; i < argc; i++)
+    {
+        printf("The %d param is %s\n", i, argv[i]);
+        if (1 == i)
+            testNum = atoi(argv[i]);
+    }
+    switch (testNum)
+    {
+    case 1:
+        Test1();
+        break;
+    case 2:
+        Test2();
+        break;
+    case 3:
+        Test3();
+        break;
+    case 4:
+        Test4();
+        break;
+    case 5:
+        Test5();
+        break;
+    default:
+        printf("Please enter a test number!\n");
+        break;
+    }
     return 0;
 }

@@ -6,6 +6,13 @@
 #include "stdlib.h"
 #include "linkqueue.h"
 
+static Status LQEmpty(const LinkQueue *q)
+{
+    if (q->front == q->rear)
+        return TRUE;
+    return FALSE;
+}
+
 Status LQInit(LinkQueue *q)
 {
     q->front = (QueuePtr)malloc(sizeof(QNode));
@@ -36,11 +43,12 @@ Status LQEnter(LinkQueue *q, ElemType e)
 Status LQOut(LinkQueue *q, ElemType *e)
 {
     QueuePtr p;
-    if (q->front == q->rear)
+    if (LQEmpty(q) == TRUE)
     {
-        printf("Queue is empty!\n");
+        printf("\nOut of queue fail, queue is empty!\n");
         return ERROR;
     }
+    // 头节点不存数据
     p = q->front->next;
     *e = p->data;
     q->front->next = p->next;
@@ -54,6 +62,7 @@ Status LQOut(LinkQueue *q, ElemType *e)
 
 void LQDestroy(LinkQueue *q)
 {
+    // 包括头结点，全部消除，其他的API都不能用
     while (q->front)
     {
         q->rear = q->front->next;
@@ -62,10 +71,11 @@ void LQDestroy(LinkQueue *q)
     }
 }
 
-int LQGetLen(LinkQueue q)
+int LQGetLen(const LinkQueue* q)
 {
-    int len = -1;
-    QueuePtr p = q.front;
+    int len = 0;
+
+    QueuePtr p = q->front->next;
     while (p != NULL)
     {
         len++;
