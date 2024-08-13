@@ -15,6 +15,7 @@
 #include "sequencestack.h"
 #include "linkstack.h"
 #include "linkqueue.h"
+#include "circlequeue.h"
 
 static void Test1(void)
 {
@@ -343,6 +344,37 @@ static void Test5(void)
         printf("LQDestroy is finished!\n");
 }
 
+static void Test6(void)
+{
+    SqQueue q;
+    CQElemType e;
+
+    CQInit(&q);
+
+    for (int i = 0; i < 36; i++)
+    {
+        if (CQEnter(&q, i) == ERROR)
+        {
+            printf("Circle queue is Full!\n");
+            break;
+        }
+    }
+    
+    printf("Line %d, Circle queue length is %d\n", __LINE__, CQLength(&q));
+    printf("Circle queue elements:\n");
+    for (int i = 0; i < 36; i++)
+    {
+        if (CQOut(&q, &e) == ERROR)
+        {
+            printf("\nCircle queue is empty!");
+            break;
+        }
+        printf("%d ", e);
+    }
+    putchar('\n');
+    printf("Line %d, Circle queue length is %d\n", __LINE__, CQLength(&q));
+}
+
 // main 可以输入若干参数
 int main(int argc, char *argv[])
 {
@@ -369,6 +401,9 @@ int main(int argc, char *argv[])
         break;
     case 5:
         Test5();
+        break;
+    case 6:
+        Test6();
         break;
     default:
         printf("Please enter a test number!\n");
