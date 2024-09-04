@@ -36,16 +36,21 @@ static void Test1(void)
 static void Test2(void)
 {
     // char T[256] = " abcabx";
-    char T[256] = " aaaaaaaaax";
+    char S[256] = " dsdsdabcabcabcx";
+    char T[256] = " abcabcx";
     int next[256];
+    S[0] = strlen(S) - 1;
     T[0] = strlen(T) - 1;
+    printf("length of s and t is %d, %d\n", S[0], T[0]);
     GetNext(T, next);
     for (int i = 1; i <= T[0]; i++)
     {
         printf("%d ", next[i]);
     }
     putchar('\n');
-    
+
+    int index = Index_KMP(S, T, 2);
+    printf("Index of T in S is %d\n", index);
 }
 
 static void Test3(void)
