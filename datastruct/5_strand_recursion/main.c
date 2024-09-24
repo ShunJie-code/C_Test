@@ -1,6 +1,13 @@
 /**
  * 32 递归和分治思想1，斐波那契数列
  * 33 递归和分治思想2，二分法，折半查找算法
+ * 34 
+ * 35
+ * 36
+ * 37
+ * 38
+ * 39
+ * 40 kmp算法之实现及优化
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -33,6 +40,7 @@ static void Test1(void)
     return;
 }
 
+// 验证KMP算法的next数组
 static void Test2(void)
 {
     // char T[256] = " abcabx";
@@ -56,14 +64,33 @@ static void Test2(void)
         printf("%d ", nextVal[i]);
     }
     putchar('\n');
-    int index = Index_KMP(S, T, 2);
-    printf("Index of T in S is %d\n", index);
 }
 
+// 验证完整的KMP算法
 static void Test3(void)
 {
-     
+    int index;
+    char s[256] = " asdfasdfasdf";
+    char t[256] = " df";
+    char t1[256] = " gh";
+
+    s[0] = strlen(s) - 1;
+    t[0] = strlen(t) - 1;
+    t1[0] = strlen(t1) - 1;
+
+    index = Index_KMP(s, t, 1);
+    printf("KMP: Index of %s in %s is %d\n", &t[1], &s[1], index);
+    
+    index = Index_KMP(s, t1, 1);
+    printf("KMP: Index of %s in %s is %d\n", &t1[1], &s[1], index);
+
+    index = Index_KMP_BETTER(s, t, 4);
+    printf("KMP_BEETER: Index of %s in %s is %d\n", &t[1], &s[1], index);
+
+    index = Index_KMP_BETTER(s, t1, 4);
+    printf("KMP_BEETER: Index of %s in %s is %d\n", &t[1], &s[1], index);
 }
+
 static void Test4(void)
 {
      

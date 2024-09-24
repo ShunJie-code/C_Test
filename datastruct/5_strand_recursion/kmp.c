@@ -45,6 +45,7 @@ void GetNextVal(char *T, int *nextval)
 }
 /**
  * 返回子串T在主串S中第pos个字符之后的位置
+ * pos > 0
  */
 int Index_KMP(char *s, char *t, int pos)
 {
@@ -71,4 +72,39 @@ int Index_KMP(char *s, char *t, int pos)
     }
     else 
         return 0;
+}
+
+/**
+ * 返回子串T在主串S中第pos个字符之后的位置
+ * 若不存在则返回0
+ * 但该方法的next数组 效率更高，
+ */
+int Index_KMP_BETTER(char *s, char *t, int pos)
+{
+    int i = pos;
+    int j = 1;
+    int next[255];
+    GetNextVal(t, next);
+    // 当字符串S没有到顶且T也没有遍历完的时候，还需要继续搜索
+    while (i <= s[0] && j <= t[0])
+    {
+        // i 会一直累加，而 j 按照 next 数组变化
+        if (s[i] == t[j] || j == 0)
+        {
+            i++;
+            j++;
+        }
+        else
+        {
+            j = next[j];
+        }
+    }
+    if (j > t[0])
+    {
+        return i - t[0];
+    }
+    else
+    {
+        return 0;
+    }
 }
