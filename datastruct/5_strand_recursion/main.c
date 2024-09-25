@@ -85,10 +85,10 @@ static void Test3(void)
     printf("KMP: Index of %s in %s is %d\n", &t1[1], &s[1], index);
 
     index = Index_KMP_BETTER(s, t, 4);
-    printf("KMP_BEETER: Index of %s in %s is %d\n", &t[1], &s[1], index);
+    printf("KMP_BEETER: Index of %s in %s after 4 is %d\n", &t[1], &s[1], index);
 
     index = Index_KMP_BETTER(s, t1, 4);
-    printf("KMP_BEETER: Index of %s in %s is %d\n", &t[1], &s[1], index);
+    printf("KMP_BEETER: Index of %s in %s after 4 is %d\n", &t[1], &s[1], index);
 }
 
 static void Test4(void)
