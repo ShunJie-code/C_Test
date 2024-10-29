@@ -1,4 +1,0 @@
-void RreOrderTraverse(BiTree T)
-{
-    
-}

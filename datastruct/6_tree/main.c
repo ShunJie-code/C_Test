@@ -5,15 +5,15 @@
  * linux操作系统就是树结构
  * 42 树的存储结构-双亲表示法
  * 43 树的存储结构-孩子表示法
- * 44 二叉树
+ * 44 二叉树1
+ * 45 二叉树2
+ * 46 二叉树的存储结构
+ * 47 二叉树的遍历
  */
+#include "common_6.h"
 
-/* 树的双亲表示法 */
 #define MAX_TREE_SIZE 100
-
-typedef int ElemType;
-
-typedef struct PTNode
+/* 树的双亲表示法 */typedef struct PTNode
 {
     ElemType data;                   // 节点数据
     int parent;                      // 双亲位置，根双亲为-1
@@ -55,5 +55,3 @@ typedef struct
     CTBox nodes[MAX_TREE_SIZE];  // 节点数组
     int r, n;
 };
-
-
