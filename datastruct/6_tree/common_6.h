@@ -11,4 +11,7 @@ typedef struct BiTNode
     struct BiTNode *lchild, *rchild;
 }BiTNode, *BiTree;
 
+void CreateBiTree(BiTree *T);
+void PreOrderTraverse(BiTree T, int level);
+
 #endif

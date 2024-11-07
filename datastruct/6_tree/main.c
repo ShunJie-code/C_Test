@@ -9,7 +9,9 @@
  * 45 二叉树2
  * 46 二叉树的存储结构
  * 47 二叉树的遍历
+ * 48 二叉树的建立和遍历
  */
+#include <stdio.h>
 #include "common_6.h"
 
 #define MAX_TREE_SIZE 100
@@ -19,12 +21,12 @@
     int parent;                      // 双亲位置，根双亲为-1
 } PTNode;
 
-typedef struct 
-{
-    PTNode nodes[MAX_TREE_SIZE];
-    int r;                           // 根的位置
-    int n;                           // 节点数目
-};
+// typedef struct 
+// {
+//     PTNode nodes[MAX_TREE_SIZE];
+//     int r;                           // 根的位置
+//     int n;                           // 节点数目
+// };
 
 /**
  * 孩子表示法，度不一致，初始化和维护起来难度巨大
@@ -50,8 +52,22 @@ typedef struct
 } CTBox;
 
 // 树结构
-typedef struct
+// typedef struct
+// {
+//     CTBox nodes[MAX_TREE_SIZE];  // 节点数组
+//     int r, n;
+// };
+
+void test1(void)
 {
-    CTBox nodes[MAX_TREE_SIZE];  // 节点数组
-    int r, n;
-};
+    int level = 1;
+    BiTree biTree = NULL;
+    CreateBiTree(&biTree);
+    PreOrderTraverse(biTree, level);
+}
+
+int main(void)
+{
+    test1();
+    return 0;
+}
