@@ -18,5 +18,22 @@ void PreOrderTraverse(BiTree T, int level)
 
 void InOrderTraverse(BiTree bTree, int level)
 {
-    
+    if (bTree == NULL)
+    {
+        return;
+    }
+    InOrderTraverse(bTree->lchild, level + 1);
+    printf("%c 位于第 %d 层\n", bTree->data, level);
+    InOrderTraverse(bTree->rchild, level + 1);
+}
+
+void PostOrderTraverse(BiTree bTree, int level)
+{
+    if (bTree == NULL)
+    {
+        return;
+    }
+    PostOrderTraverse(bTree->lchild, level + 1);
+    PostOrderTraverse(bTree->rchild, level + 1);
+    printf("%c 位于第 %d 层\n", bTree->data, level);
 }

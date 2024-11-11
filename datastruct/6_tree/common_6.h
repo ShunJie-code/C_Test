@@ -13,5 +13,6 @@ typedef struct BiTNode
 
 void CreateBiTree(BiTree *T);
 void PreOrderTraverse(BiTree T, int level);
-
+void InOrderTraverse(BiTree bTree, int level);
+void PostOrderTraverse(BiTree bTree, int level);
 #endif
