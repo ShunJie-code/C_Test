@@ -62,8 +62,15 @@ void test1(void)
 {
     int level = 1;
     BiTree biTree = NULL;
-    CreateBiTree(&biTree);
+    printf("请按前序遍历输入一颗树：\n");
+    CreateBiTree(&biTree);                      // 教程上的树ABDG##H###CE#I##F##
+    printf("前序遍历：\n");
     PreOrderTraverse(biTree, level);
+    printf("中序遍历：\n");
+    InOrderTraverse(biTree, level);
+    printf("后序遍历：\n");
+    PostOrderTraverse(biTree, level);
+    DestroyBiTree(biTree);
 }
 
 int main(void)

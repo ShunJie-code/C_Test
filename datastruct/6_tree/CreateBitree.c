@@ -64,5 +64,7 @@ void DestroyBiTree(BiTree root)
     }
     DestroyBiTree(root->lchild);
     DestroyBiTree(root->rchild);
+    printf("释放 %c\n", root->data);
     free(root);
+    root = NULL;    //  防止野指针
 }

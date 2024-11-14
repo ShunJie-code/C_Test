@@ -12,6 +12,7 @@ typedef struct BiTNode
 }BiTNode, *BiTree;
 
 void CreateBiTree(BiTree *T);
+void DestroyBiTree(BiTree root);
 void PreOrderTraverse(BiTree T, int level);
 void InOrderTraverse(BiTree bTree, int level);
 void PostOrderTraverse(BiTree bTree, int level);
