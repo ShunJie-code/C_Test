@@ -10,6 +10,7 @@
  * 46 二叉树的存储结构
  * 47 二叉树的遍历
  * 48 二叉树的建立和遍历
+ * 49 线索二叉树，中序遍历+线索或者节点
  */
 #include <stdio.h>
 #include "common_6.h"
@@ -17,7 +18,7 @@
 #define MAX_TREE_SIZE 100
 /* 树的双亲表示法 */typedef struct PTNode
 {
-    ElemType data;                   // 节点数据
+    IntElemType data;                   // 节点数据
     int parent;                      // 双亲位置，根双亲为-1
 } PTNode;
 
@@ -46,7 +47,7 @@ typedef struct CTNode
 // 表头结构
 typedef struct 
 {
-    ElemType data;         // 数据
+    IntElemType data;         // 数据
     int parent;
     ChildPtr firstChild;
 } CTBox;

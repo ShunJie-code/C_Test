@@ -1,44 +1,30 @@
-/*二叉树的线索二叉树存储结构定义*/
+/*二叉树、线索二叉树存储结构定义*/
 #include "common_6.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef int TElemType;
-typedef enum
+// 创建线索树，默认用户按照前序遍历输入,输入是根节点指针的指针
+void CreateBiThreadTree(BiThreadTree *ppNode)
 {
-    Link,
-    Thread
-} PointerTag; // 枚举列表自动定1和0，为0时指向孩子，为1时指向线索
+    char c;
+    scanf("%c", &c);
+    if (' ' == c)
+    {
+        *ppNode = NULL;
+    }
+    else
+    {
+        *ppNode = (BiThreadNode *)malloc(sizeof(BiThreadNode));
+        (*ppNode)->data = c;
+        // 先默认有左右孩子，再线索化
+        (*ppNode)->ltag = Link;
+        (*ppNode)->rtag = Link;
+        CreateBiThreadTree(&(*ppNode)->lchild);
+        CreateBiThreadTree(&(*ppNode)->rchild);
+    }
+}
 
-typedef struct BiThrNode
-{
-    TElemType data;
-    struct BiThrNode *lchild, *rchild;
-    PointerTag Ltag;
-    PointerTag Rtag;
-} BiThrNode, *BiThrTree;
-
-// 创建一颗树，默认用户按照前序遍历输入
-// 输入是指针的指针
-// void CreateBiTree(BiTree *T)
-// {
-//     char c;
-//     scanf("%c", c);
-//     if (' ' == c)
-//     {
-//         *T = NULL;
-//     }
-//     else
-//     {
-//         *T = (BiTNode *)malloc(sizeof(BiTNode));
-//         (*T)->data = c;
-//         CreateBiTree(&(*T)->lchild);
-//         CreateBiTree(&(*T)->rchild);
-//     }
-// }
-
-// 按前序输入二叉树中结点的值
-// #表示空树
+// 按前序输入二叉树中结点的值，#表示空树
 void CreateBiTree(BiTree *T)
 {
     CharElemType ch;
