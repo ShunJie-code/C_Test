@@ -27,11 +27,16 @@ typedef struct BiThreadNode
     PointerTag rtag;    // 0 右孩子 1 后继
 } BiThreadNode, *BiThreadTree;
 
-void CreateBiThreadTree(BiThreadTree *ppNode);
-
 void CreateBiTree(BiTree *T);
 void DestroyBiTree(BiTree root);
 void PreOrderTraverse(BiTree T, int level);
 void InOrderTraverse(BiTree bTree, int level);
 void PostOrderTraverse(BiTree bTree, int level);
+
+void CreateBiThreadTree(BiThreadTree *ppNode);
+void InThreading(BiThreadTree node);            // 中序遍历线索化
+
+void InOrderThread(BiThreadNode **pp, BiThreadTree root);  // 带头结点的中序遍历线索化
+// 线索二叉树可以不递归
+void THR_InOrderTraverse(BiThreadTree tree);
 #endif

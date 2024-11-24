@@ -11,12 +11,14 @@
  * 47 二叉树的遍历
  * 48 二叉树的建立和遍历
  * 49 线索二叉树，中序遍历+线索或者节点
+ * 50 线索二叉树的实现
  */
 #include <stdio.h>
 #include "common_6.h"
 
 #define MAX_TREE_SIZE 100
-/* 树的双亲表示法 */typedef struct PTNode
+/* 树的双亲表示法 */
+typedef struct PTNode
 {
     IntElemType data;                   // 节点数据
     int parent;                      // 双亲位置，根双亲为-1
@@ -74,8 +76,19 @@ void test1(void)
     DestroyBiTree(biTree);
 }
 
+void test2(void)
+{
+    BiThreadNode *pHead;
+    BiThreadTree tree = NULL;
+    CreateBiThreadTree(&tree);  // ABC  D  E F    
+    InOrderThread(&pHead, tree);
+    THR_InOrderTraverse(pHead);
+    printf("\nfinish\n");
+}
+
 int main(void)
 {
-    test1();
+    // test1();
+    test2();
     return 0;
 }

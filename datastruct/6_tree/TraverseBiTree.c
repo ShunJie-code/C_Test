@@ -37,3 +37,24 @@ void PostOrderTraverse(BiTree bTree, int level)
     PostOrderTraverse(bTree->rchild, level + 1);
     printf("%c 位于第 %d 层\n", bTree->data, level);
 }
+
+// 线索二叉树可以不递归
+void THR_InOrderTraverse(BiThreadTree tree)
+{
+    BiThreadNode *p;
+    p = tree->lchild;     // 头指针的左节点为树的根
+    while (p != tree)
+    {
+        while (p->ltag == Link)
+        {
+            p = p->lchild;
+        }
+        printf("%c , rtype = %u\n", p->data, p->rtag);
+        while (p->rtag == Thread && p->rchild != tree)
+        {
+            p = p->rchild;
+            printf("%c , rtype = %u\n", p->data, p->rtag);
+        }
+        p = p->rchild;
+    }
+}
