@@ -49,7 +49,7 @@ void InThreading(BiThreadTree node)
     }
 }
 
-// 带头结点的中序遍历
+// 带头结点的线索二叉树中序遍历线索化
 void InOrderThread(BiThreadNode **pp, BiThreadTree root)
 {
     *pp = (BiThreadNode *)malloc(sizeof(BiThreadNode));

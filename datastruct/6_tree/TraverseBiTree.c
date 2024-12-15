@@ -38,7 +38,7 @@ void PostOrderTraverse(BiTree bTree, int level)
     printf("%c 位于第 %d 层\n", bTree->data, level);
 }
 
-// 线索二叉树可以不递归
+// 线索二叉树可以不递归完成中序遍历
 void THR_InOrderTraverse(BiThreadTree tree)
 {
     BiThreadNode *p;
