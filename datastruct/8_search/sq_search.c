@@ -11,6 +11,7 @@ int SQ_Search(int *a, int n, int key)
     return 0;
 }
 
+// Todo 哨兵顺序查找
 int SQ_SearchBetter(int *a, int n, int key)
 {
     int i;
