@@ -13,9 +13,12 @@
  * 50 线索二叉树的实现
  * 51 树、森林及二叉树的相互转换
  * 52 赫夫曼树
+ * 53 赫夫曼编码
+ * 54 赫夫曼编码C语言实现
  */
 #include <stdio.h>
 #include "common_6.h"
+#include "huffman.h"
 
 #define MAX_TREE_SIZE 100
 
@@ -79,9 +82,21 @@ void test2(void)
     printf("\nfinish\n");
 }
 
+/**
+ * @brief 测试huffman树、编码、解码
+ * 
+ */
+void test3(void)
+{
+    HuffmanTree hfTree = HUF_BuildTree("I love FishC.com!");
+    
+    HuffmanTable *hfTable = HUF_BuildTable(hfTree);
+    HUF_Encode(hfTable, "I love FishC.com!");
+    HUF_Decode(hfTree, "0011111000111");
+}
+
 int main(void)
 {
-    // test1();
-    test2();
+    test3();
     return 0;
 }
