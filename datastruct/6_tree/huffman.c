@@ -1,4 +1,6 @@
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "huffman.h"
 #include "queue4huffman.h"
 
@@ -54,12 +56,41 @@ HuffmanTree HUF_BuildTree(char *str)
 }
 
 // 递归函数
-static TraverseTree(HuffmanTree tree, HuffmanTable **table, int k, char *code)
+static void TraverseTree(HuffmanTree tree, HuffmanTable **table, int k, char *code)
 {
-    if (condition)
+    if (tree->lchild == NULL && tree->rchild == NULL)
     {
-        /* code */
+        code[k] = '\0';
+
+        HufTableNode *pNode = (HufTableNode *)malloc(sizeof(HufTableNode));
+        if (pNode == NULL)
+        {
+            perror("HufTableNode malloc fail in TraverseTree");
+            return;
+        }
+        
+        // 申请内存，然后向内存内赋值
+        pNode->code = (char *)malloc(sizeof(char) * (strlen(code) + 1));
+        if (pNode->code == NULL)
+        {
+            perror("char malloc fail in TraverseTree");
+            return;
+        }
+        strcpy(pNode->code, code);
+        pNode->symbol = tree->data;
+        pNode->next = NULL;
+        if ((*table)->first == NULL)
+        {
+            (*table)->first = pNode;
+            (*table)->last = pNode;
+        }
+        else
+        {
+            (*table)->last->next = pNode;
+            (*table)->last = pNode;
+        }
     }
+
     
 }
 
