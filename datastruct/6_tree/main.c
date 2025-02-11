@@ -89,8 +89,8 @@ void test2(void)
 void test3(void)
 {
     HuffmanTree hfTree = HUF_BuildTree("I love FishC.com!");
-    
-    HuffmanTable *hfTable = HUF_BuildTable(hfTree);
+
+    HufTable *hfTable = HUF_BuildTable(hfTree);
     HUF_Encode(hfTable, "I love FishC.com!");
     HUF_Decode(hfTree, "0011111000111");
 }

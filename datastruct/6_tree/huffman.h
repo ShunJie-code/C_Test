@@ -25,11 +25,11 @@ typedef struct HufTableNode
     struct HufTableNode *next;
 } HufTableNode;
 
-typedef struct HuffmanTable
+typedef struct HufTable
 {
     HufTableNode *first;
     HufTableNode *last;
-}HuffmanTable;
+}HufTable;
 
 /**
  * @brief 建立赫夫曼树
@@ -43,23 +43,23 @@ HuffmanTree HUF_BuildTree(char *str);
  * @brief 建立赫夫曼编码表
  * 
  * @param huffmanTree 
- * @return HuffmanTable 
+ * @return HufTable 
  */
-HuffmanTable *HUF_BuildTable(HuffmanTree huffmanTree);
+HufTable *HUF_BuildTable(HuffmanTree huffmanTree);
 
 /**
  * @brief 根据编码表，进行赫夫曼编码
  * 
- * @param hufTable 
+ * @param table 
  * @param str 格式如 "hello world"
  */
-void HUF_Encode(HuffmanTable *hufTable, char *str);
+void HUF_Encode(HufTable *table, char *str);
 
 /**
  * @brief 根据赫夫曼树，进行赫夫曼解码s
  * 
- * @param hufTree 
+ * @param tree 
  * @param str 格式如 "0010010010101"
  */
-void HUF_Decode(HuffmanTree hufTree, char *str);
+void HUF_Decode(HuffmanTree tree, char *str);
 #endif
