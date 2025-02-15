@@ -1,2 +1,2 @@
-hello: main.c | Makefile
-	gcc -g -Wall -o main main.c
+hello: main.c graph.c | Makefile
+	gcc -g -Wall -o main main.c graph.c

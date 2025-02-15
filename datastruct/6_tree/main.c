@@ -89,10 +89,11 @@ void test2(void)
 void test3(void)
 {
     HuffmanTree hfTree = HUF_BuildTree("I love FishC.com!");
-
     HufTable *hfTable = HUF_BuildTable(hfTree);
     HUF_Encode(hfTable, "I love FishC.com!");
+    // result: 100011001110010000101011010010100000101011111011111101100101101110
     HUF_Decode(hfTree, "0011111000111");
+    // result: oCo
 }
 
 int main(void)
