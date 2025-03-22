@@ -12,13 +12,7 @@
 #include <stdio.h>
 #include "graph.h"
 
-void Test1(void)
-{
-    MGraph graph;
-    CreateMGraph(&graph);
-}
-
-void Test2(void)
+void Test0(void)
 {
     char ch1, ch2, ch3;
     printf("Enter three characters: ");
@@ -27,8 +21,24 @@ void Test2(void)
     printf("You entered: %c, %c, %c\n", ch1, ch2, ch3);
 }
 
+// 测试邻接矩阵————创建图，dfs,bfs
+void Test1(void)
+{
+    MGraph graph;
+    MGraphCreate(&graph);
+    MGraphDfs(graph);
+}
+
+// 测试邻接表————创建图，dfs,bfs
+void Test2(void)
+{
+    GraphAdjList graph;
+    ALGraphCreate(&graph);
+    ALGraphDfs(&graph);
+}
+
 int main(void)
 {
-    Test1();
+    Test2();
     return 0;
 }

@@ -24,10 +24,7 @@ typedef struct
     EdgeType arc[MAXVEX][MAXVEX];   // 边表，Adjacency Matrix
     int numVertexes, numEdges;
 } MGraph;
-
-void CreateMGraph(MGraph *g);
 // endrigion 邻接矩阵
-
 
 // region 邻接表
 typedef struct EdgeNode
@@ -46,10 +43,31 @@ typedef struct VertexNode
 typedef struct 
 {
     AdjList adjList;
-    int numVert;
-    
+    int numVertexes, numEdges;  // 图中的顶点数和边数
 }GraphAdjList;
-
 // endregion 邻接表
+
+/**
+ * @brief 邻接矩阵————建立无向网、无向图
+ * 
+ * @param g 
+ */
+void MGraphCreate(MGraph *g);
+
+/**
+ * @brief 邻接矩阵————DFS遍历
+ * 
+ * @param g 
+ */
+void MGraphDfs(MGraph g);
+
+/**
+ * @brief 邻接表————建立无向网、无向图
+ * 
+ * @param G 
+ */
+void ALGraphCreate(GraphAdjList *g);
+
+void ALGraphDfs(const GraphAdjList *g);
 
 #endif
