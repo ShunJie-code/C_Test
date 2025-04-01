@@ -1,5 +1,5 @@
 // tips:这是C语言版，可能有的语法我掌握不全，那就先抄抄书上的代码
-// 做到相对正确即可
+// 做到相对正确即可, Depth first search
 #include <stdio.h>
 #include <stdbool.h>
 #include "graph.h"
