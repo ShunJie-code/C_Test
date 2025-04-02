@@ -3,10 +3,8 @@
  * 70 顺序查找
  */
 #include <stdio.h>
-#include <stdlib.h>
-#include "search.h"
-// #include </usr/include/linux/time.h>
 #include <time.h>
+#include "search.h"
 
 void Test1(void)
 {
@@ -22,14 +20,12 @@ void Test1(void)
 
 int Test4(void) 
 {
-    time_t current_time;
+    // time_t current_time;
+    // current_time = time(NULL);  // 秒级时间戳
+    // printf("Current timestamp: %ld\n", current_time);
     struct timespec ts;
-    // 获取当前时间的时间戳
-    current_time = time(NULL);  // 秒级时间戳
     clock_gettime(CLOCK_REALTIME, &ts);  // ns级别时间戳
-    // 打印时间戳
     printf("Seconds: %ld, Nanoseconds: %ld\n", ts.tv_sec, ts.tv_nsec);
-    printf("Current timestamp: %ld\n", current_time);
     return 0;
 }
 
