@@ -8,3 +8,10 @@
  * @copyright Copyright (c) 2025
  * 
  */
+#ifndef MTLY_H
+#define MTLY_H
+#include <stdbool.h>
+void Mtly(void);
+bool solveKnightTour(int startX, int startY);
+
+#endif

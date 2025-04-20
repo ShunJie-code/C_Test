@@ -11,7 +11,9 @@
  * 61 马踏连营算法，马可以遍历棋盘所有的点
  */
 #include <stdio.h>
+#include <time.h>
 #include "graph.h"
+#include "mtly.h"
 
 void Test0(void)
 {
@@ -38,8 +40,37 @@ void Test2(void)
     ALGraphDfs(&graph);
 }
 
+void Test3(void)
+{
+    clock_t start;
+    clock_t finish;
+    start = clock();
+    Mtly();
+    finish = clock();
+    printf("%s-%d Use time %f s\n", 
+        __func__,
+        __LINE__,
+        (double)(finish - start)/CLOCKS_PER_SEC);
+}
+
+int Test4() {
+    clock_t start;
+    clock_t finish;
+    start = clock();
+    int startX = 0, startY = 0;
+    solveKnightTour(startX, startY);
+    finish = clock();
+    printf("%s-%d Use time %f s\n", 
+            __func__,
+            __LINE__,
+            (double)(finish - start)/CLOCKS_PER_SEC);
+    return 0;
+}    
+
 int main(void)
 {
-    Test2();
+    Test4();
+    Test3();
+
     return 0;
 }
