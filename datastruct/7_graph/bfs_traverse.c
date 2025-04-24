@@ -1,34 +1,34 @@
 /**
  * @file BFSTraverse.c
  * @author your name (you@domain.com)
- * @brief 邻接矩阵的广度遍历算法
+ * @brief 邻接矩阵的广度遍历算法,Breadth first search
  * @version 0.1
  * @date 2025-02-15
  * 
  * @copyright Copyright (c) 2025
  * 
  */
+#include <stdbool.h>
 #include "graph.h"
+#include "linkqueue.h"
 
-/**
- * @brief Breadth first search
- * 
- * @param G 
- */
+static bool visited[MAXVEX];
+
 void BFS_Traverse(MGraph G)
 {
     int i, j;
-    Queue Q;
+    LinkQueue q;
     for (i = 0; i < G.numVertexes; i++)
-        visited[i] = FALSE;
-    InitQueue(&Q); // 初始化一辅助用的队列
+        visited[i] = false;
+    // 初始化一辅助用的队列
+    LQInit(&q);
     for (i = 0; i < G.numVertexes; i++)
     {
         if (!visited[i])
         {
-            visited[i] = TRUE;
+            visited[i] = true;
             printf("%c", G.vexs[i]);
-            EnQueue(&Q, i);
+            LQEnter(&q, i);
             while (!QueueEmpty(Q)) // 队列非空,!!!连通图靠这个队列即可遍历所有
             {
                 DeQueue(&Q, &i); // 关键是理解队列的剔除与插入
@@ -44,4 +44,9 @@ void BFS_Traverse(MGraph G)
             }
         }
     }
+}
+
+void MGraphBfs(MGraph g)
+{
+    
 }

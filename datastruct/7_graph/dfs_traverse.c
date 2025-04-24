@@ -4,8 +4,7 @@
 #include <stdbool.h>
 #include "graph.h"
 
-typedef int Boolean;
-Boolean visited[MAXVEX];
+static bool visited[MAXVEX];
 
 // 邻接矩阵的深度优先递归算法
 static void MG_DFS(MGraph G, int i)
