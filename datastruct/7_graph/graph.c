@@ -15,7 +15,7 @@ void MGraphCreate(MGraph *g)
             g->arc[i][i] = INFINITY;
     for (k = 0; k < g->numEdges; k++)
     {
-        printf("3 输入边的下标和权(i,j,w):\n");
+        printf("3 输入边的下标(从0开始)和权(i,j,w):\n");
         scanf("%d,%d,%d", &i, &j, &w);
         g->arc[i][j] = w;
         g->arc[j][i] = g->arc[i][j];

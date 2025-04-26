@@ -6,7 +6,7 @@
 #include "stdlib.h"
 #include "linkqueue.h"
 
-static Status LQEmpty(const LinkQueue *q)
+Status LQEmpty(const LinkQueue *q)
 {
     if (q->front == q->rear)
         return TRUE;

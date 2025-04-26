@@ -18,7 +18,7 @@ typedef struct
 Status LQInit(LinkQueue *q);
 Status LQEnter(LinkQueue *q, ElemType e);
 Status LQOut(LinkQueue *q, ElemType *e);
-
+Status LQEmpty(const LinkQueue *q);
 void LQDestroy(LinkQueue *q);
 int LQGetLen(const LinkQueue* q);
 

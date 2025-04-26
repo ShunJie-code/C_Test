@@ -68,10 +68,20 @@ int Test4() {
     return 0;
 }    
 
+/**
+ * @brief 测试广度优先算法
+ * 
+ */
+void Test5(void)
+{
+    MGraph graph;
+    MGraphCreate(&graph);
+    MGraphBfs(graph);
+}
+
 int main(void)
 {
-    Test4();
-    Test3();
-
+    Test5();
+    // Test3();
     return 0;
 }
