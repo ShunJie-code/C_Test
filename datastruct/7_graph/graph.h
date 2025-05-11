@@ -48,33 +48,45 @@ typedef struct
 // endregion 邻接表
 
 /**
- * @brief 邻接矩阵--建立无向网、无向图
+ * @brief 邻接矩阵，建立无向网、无向图
  * 
  * @param g 
  */
 void MGraphCreate(MGraph *g);
 
 /**
- * @brief 邻接矩阵--DFS遍历
+ * @brief 邻接矩阵，DFS遍历
  * 
  * @param g 
  */
 void MGraphDfs(MGraph g);
 
 /**
- * @brief 邻接矩阵--BFS遍历
+ * @brief 邻接矩阵，BFS遍历
  * 
  * @param g 
  */
 void MGraphBfs(MGraph g);
 
 /**
- * @brief 邻接表————建立无向网、无向图
+ * @brief 邻接表，建立无向网、无向图
  * 
  * @param G 
  */
 void ALGraphCreate(GraphAdjList *g);
 
+/**
+ * @brief 邻接表，Dfs遍历
+ * 
+ * @param g 
+ */
 void ALGraphDfs(const GraphAdjList *g);
 
+
+/**
+ * @brief 邻接表，Dfs遍历
+ * 
+ * @param g 
+ */
+void ALGraphDfs(const GraphAdjList *g);
 #endif

@@ -11,7 +11,7 @@
 #ifndef MTLY_H
 #define MTLY_H
 #include <stdbool.h>
-void Mtly(void);
-bool solveKnightTour(int startX, int startY);
+void Mtly(int startX, int startY);
+bool SolveKnightTour(int startX, int startY);
 
 #endif

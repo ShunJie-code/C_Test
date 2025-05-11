@@ -15,7 +15,7 @@
 
 static bool visited[MAXVEX];
 
-void BFS_Traverse(MGraph G)
+void MGraphBfs(MGraph G)
 {
     int i, j;
     LinkQueue q;
@@ -25,7 +25,7 @@ void BFS_Traverse(MGraph G)
     LQInit(&q);
     for (i = 0; i < G.numVertexes; i++)
     {
-        printf("%s_%d\n", __func__, __LINE__);
+        printf("\n%s_%d one times\n", __func__, __LINE__);
         if (!visited[i])
         {
             visited[i] = true;
@@ -33,7 +33,6 @@ void BFS_Traverse(MGraph G)
             LQEnter(&q, i);
             while (LQEmpty(&q) == FALSE) // 队列非空,!!!连通图靠这个队列即可遍历所有
             {
-                printf("%s_%d\n", __func__, __LINE__);
                 LQOut(&q, &i); // 关键是理解队列的剔除与插入
                 for (j = 0; j < G.numVertexes; j++)
                 {
@@ -48,9 +47,6 @@ void BFS_Traverse(MGraph G)
             }
         }
     }
+    printf("\n%s_%d: finish\n\n", __func__, __LINE__);
 }
 
-void MGraphBfs(MGraph g)
-{
-    BFS_Traverse(g);
-}

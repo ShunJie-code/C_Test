@@ -29,10 +29,10 @@ void MGraphDfs(MGraph g)
         if (!visited[i])
         {
             // 对未访问的顶点调用DFS,若是连通图，只会执行1次
-            printf("%s one times\n", __func__);
+            printf("\n%s_%d one times\n", __func__, __LINE__);
             MG_DFS(g, i);
         }
-    printf("\n%s finish\n", __func__);
+    printf("\n%s_%d finish\n\n", __func__, __LINE__);
 }
 
 // 邻接表的深度优先递归算法
@@ -64,9 +64,14 @@ void ALGraphDfs(const GraphAdjList *g)
         if (!visited[i])
         {
             // 对未访问的顶点调用DFS,若是连通图，只会执行1次
-            printf("%s one times\n", __func__);
+            printf("%s_%d one times\n", __func__, __LINE__);
             ALG_DFS(g, i);
         }
     }
-    printf("\n%s finish\n", __func__);
+    printf("\n%s_%d finish\n", __func__, __LINE__);
+}
+
+void ALGraphBfs(const GraphAdjList *g)
+{
+
 }
