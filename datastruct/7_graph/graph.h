@@ -84,9 +84,9 @@ void ALGraphDfs(const GraphAdjList *g);
 
 
 /**
- * @brief 邻接表，Dfs遍历
+ * @brief 邻接表，Bfs遍历
  * 
  * @param g 
  */
-void ALGraphDfs(const GraphAdjList *g);
+void ALGraphBfs(const GraphAdjList *g);
 #endif
