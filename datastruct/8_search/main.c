@@ -11,13 +11,13 @@
 void Test1(void)
 {
     int key = 8;
-    int a[5] = {1, 2, 3, 4, 5};
+    int a[] = {0, 1, 2, 3, 4, 5};
 
-    int index = SQ_Search(a, sizeof(a) / sizeof(int), key);
+    int index = SQ_Search(a, sizeof(a) / sizeof(int) - 1, key);
     CheckSearchResult(index, key);
 
     key = 3;
-    index = SQ_SearchBetter(a, sizeof(a) / sizeof(int), key);
+    index = SQ_SearchBetter(a, sizeof(a) / sizeof(int) - 1, key);
     CheckSearchResult(index, key);
 }
 
