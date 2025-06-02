@@ -40,3 +40,74 @@ void MiniSpanTreePrim(MGraph graph)
         }
     }
 }
+
+static int Find(int parent[], int f)
+{
+    // 查找顶点i的根节点
+    while (parent[f] > 0)
+    {
+        f = parent[f];
+    }
+    return f;
+}
+
+void MiniSpanTreeKruskal(MGraph graph)
+{
+    // Kruskal算法实现
+    int i, j, k, m;
+    int parent[MAXVEX];                 // 存储每个顶点的父节点，用于判断边与边是否形成回路
+    Edge edges[MAXVEX * MAXVEX];    // 存储所有边，边集数组
+    int edgeCount = 0;
+
+    for (i = 0; i < graph.numVertexes; i++)
+    {
+        parent[i] = 0; 
+    }
+    
+    // 初始化边集
+    for (i = 0; i < graph.numVertexes; i++)
+    {
+        for (j = i + 1; j < graph.numVertexes; j++)
+        {
+            if (graph.arc[i][j] != INFINITY)
+            {
+                edges[edgeCount].begin = i;
+                edges[edgeCount].end = j;
+                edges[edgeCount].weight = graph.arc[i][j];
+                edgeCount++;
+            }
+        }
+    }
+
+    // 按边权排序
+    for (i = 0; i < edgeCount - 1; i++)
+    {
+        for (j = 0; j < edgeCount - i - 1; j++)
+        {
+            if (edges[j].weight > edges[j + 1].weight)
+            {
+                Edge temp = edges[j];
+                edges[j] = edges[j + 1];
+                edges[j + 1] = temp;
+            }
+        }
+    }
+
+    // 初始化父节点
+    for (i = 0; i < graph.numVertexes; i++)
+    {
+        parent[i] = i;
+    }
+
+    // Kruskal算法核心
+    for (i = 0; i < edgeCount; i++)
+    {
+        int startRoot = Find(parent, edges[i].begin);
+        int endRoot = Find(parent, edges[i].end);
+        if (startRoot != endRoot) // 如果不在同一集合中
+        {
+            printf("Edge (%c, %c) with weight %d\n", graph.vexs[edges[i].begin], graph.vexs[edges[i].end], edges[i].weight);
+            parent[startRoot] = endRoot; // 合并集合
+        }
+    }
+}

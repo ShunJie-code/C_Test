@@ -17,6 +17,14 @@
 typedef char VertexType; // 顶点类型定义
 typedef int EdgeType;
 
+typedef struct 
+{
+    int begin;  // 边的起点
+    int end;    // 边的终点
+    EdgeType weight; // 边的权值
+}Edge;
+
+
 // region 邻接矩阵
 typedef struct
 {
