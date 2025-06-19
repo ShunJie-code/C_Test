@@ -10,14 +10,17 @@
 
 void Test1(void)
 {
-    int key = 8;
     int a[] = {0, 1, 2, 3, 4, 5};
-
-    int index = SQ_Search(a, sizeof(a) / sizeof(int) - 1, key);
+    int key = 8;
+    
+    int index = SqSearch(a, sizeof(a) / sizeof(int) - 1, key);
     CheckSearchResult(index, key);
 
     key = 3;
-    index = SQ_SearchBetter(a, sizeof(a) / sizeof(int) - 1, key);
+    index = SqSearchBetter(a, sizeof(a) / sizeof(int) - 1, key);
+    CheckSearchResult(index, key);
+
+    index = BinarySearch(a, sizeof(a) / sizeof(int) - 1, key);
     CheckSearchResult(index, key);
 }
 

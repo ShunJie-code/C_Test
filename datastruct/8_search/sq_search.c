@@ -8,8 +8,9 @@ void CheckSearchResult(int index, int key)
         printf("Element %d is not found\n", key);
 }
 
-int SQ_Search(int *a, int n, int key)
+int SqSearch(int *a, int n, int key)
 {
+    printf("%s_%d\n", __func__, __LINE__);
     int i;
     for (i = 1; i <= n; i++)
     {
@@ -21,8 +22,9 @@ int SQ_Search(int *a, int n, int key)
     return 0;
 }
 
-int SQ_SearchBetter(int *a, int n, int key)
+int SqSearchBetter(int *a, int n, int key)
 {
+    printf("%s_%d\n", __func__, __LINE__);
     int i = n;
     a[0] = key;
     // 优点在于不需要判断i<n
@@ -32,3 +34,28 @@ int SQ_SearchBetter(int *a, int n, int key)
     }
     return i;
 }
+
+
+int BinarySearch(int *a, int n, int key)
+{
+    printf("%s_%d\n", __func__, __LINE__);
+    int low = 1, high = n;
+    while (low <= high)
+    {
+        int mid = (low + high) / 2;
+        if (a[mid] == key)
+        {
+            return mid;
+        }
+        else if (a[mid] < key)
+        {
+            low = mid + 1;
+        }
+        else
+        {
+            high = mid - 1;
+        }
+    }
+    return 0; // 未找到
+}
+

@@ -20,7 +20,7 @@ void CheckSearchResult(int index, int key);
  * @param key 待搜索的值
  * @return int 搜到的值的位置，没有则返回0
  */
-int SQ_Search(int *a, int n, int key);
+int SqSearch(int *a, int n, int key);
 
 /**
  * @brief 哨兵顺序查找
@@ -30,4 +30,14 @@ int SQ_Search(int *a, int n, int key);
  * @param key 
  * @return int 搜到的值的位置，没有则返回0
  */
-int SQ_SearchBetter(int *a, int n, int key);
+int SqSearchBetter(int *a, int n, int key);
+
+/**
+ * @brief 二分查找
+ * 
+ * @param a 数组指针 a[0] 不存值
+ * @param n 数组长度
+ * @param key 待搜索的值
+ * @return int 搜到的值的位置，没有则返回0
+ */
+int BinarySearch(int *a, int n, int key);
