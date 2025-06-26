@@ -9,7 +9,7 @@
  * @copyright Copyright (c) 2025
  * 
  */
-
+#include "graph.h"
 /**
  * @brief 最小生成树 Prim算法，点少边多
  * Prim算法是从一个顶点开始，逐步扩展生成树，每次选择与生成树相连的最小边。

@@ -22,6 +22,7 @@
 #include <time.h>
 #include "graph.h"
 #include "mtly.h"
+#include "mcst.h"
 
 /**
  * @brief 测试字符读取
@@ -95,10 +96,14 @@ void Test4(void)
  */
 void Test5(void)
 {
-
+    MGraph graph;
+    MGraphCreateFromBook(&graph);
+    MiniSpanTreePrim(graph);
+    printf("----------Kruskal--------\n");
+    MiniSpanTreeKruskal(graph);
 }
 
-int main(int argc, char *argv[])
+static void RunFromEnterNum(int argc, char *argv[])
 {
     int testNum = -1;
     for (int i = 0; i < argc; i++)
@@ -133,5 +138,11 @@ int main(int argc, char *argv[])
             }
         }
     }
+} 
+
+int main(int argc, char *argv[])
+{
+    RunFromEnterNum(argc, argv);
+    // Test5();
     return 0;
 }

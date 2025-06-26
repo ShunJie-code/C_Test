@@ -97,4 +97,7 @@ void ALGraphDfs(const GraphAdjList *g);
  * @param g 
  */
 void ALGraphBfs(const GraphAdjList *g);
+
+void MGraphCreateFromBook(MGraph *g);
+
 #endif

@@ -1,5 +1,4 @@
 #include "mcst.h"
-#include "graph.h"
 #include <stdio.h>
 
 void MiniSpanTreePrim(MGraph graph)
@@ -27,6 +26,7 @@ void MiniSpanTreePrim(MGraph graph)
                 k = j; // 找到最小边权的顶点
             }
         }
+        // 打印生成最小路径树的过程
         printf("Edge (%c, %c) with weight %d\n", graph.vexs[adjvex[k]], graph.vexs[k], min);
         lowcost[k] = 0; // 标记已加入生成树
         for (j = 1; j < graph.numVertexes; j++)
@@ -54,7 +54,7 @@ static int Find(int parent[], int f)
 void MiniSpanTreeKruskal(MGraph graph)
 {
     // Kruskal算法实现
-    int i, j, k, m;
+    int i, j;
     int parent[MAXVEX];                 // 存储每个顶点的父节点，用于判断边与边是否形成回路
     Edge edges[MAXVEX * MAXVEX];    // 存储所有边，边集数组
     int edgeCount = 0;

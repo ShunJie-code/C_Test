@@ -2,6 +2,47 @@
 #include <stdlib.h>
 #include "graph.h"
 
+static void AssignmentEdge(MGraph *g, int i, int j, int w)
+{
+    g->arc[i][j] = w;
+    g->arc[j][i] = g->arc[i][j];
+    printf("边[%d][%d] = %d\n", j, i, g->arc[j][i]);
+}
+
+void MGraphCreateFromBook(MGraph *g)
+{
+    int i, j;
+    g->numVertexes = 9;
+    g->numEdges = 15;
+    printf("1 教材图顶点数 %d 边数 %d\n", g->numVertexes, g->numEdges);
+    printf("2 每个顶点的数据: ");
+    for (i = 0; i < g->numVertexes; i++)
+    {
+        g->vexs[i] = 'a' + i;
+        printf("%c ", g->vexs[i]);
+    }
+    printf("\n");
+
+    for (i = 0; i < g->numVertexes; i++)
+        for (j = 0; j < g->numVertexes; j++)
+            g->arc[i][j] = INFINITY;
+    AssignmentEdge(g, 0, 1, 10);
+    AssignmentEdge(g, 0, 5, 11);
+    AssignmentEdge(g, 1, 2, 18);
+    AssignmentEdge(g, 1, 6, 16);
+    AssignmentEdge(g, 1, 8, 12);
+    AssignmentEdge(g, 2, 3, 22);
+    AssignmentEdge(g, 2, 8,  8);
+    AssignmentEdge(g, 3, 4, 20);
+    AssignmentEdge(g, 3, 6, 24);
+    AssignmentEdge(g, 3, 7, 16);
+    AssignmentEdge(g, 3, 8, 21);
+    AssignmentEdge(g, 4, 5, 26);
+    AssignmentEdge(g, 4, 7,  7);
+    AssignmentEdge(g, 5, 6, 17);
+    AssignmentEdge(g, 6, 7, 19);
+}
+
 void MGraphCreate(MGraph *g)
 {
     int i, j, k, w;
@@ -12,7 +53,7 @@ void MGraphCreate(MGraph *g)
         scanf(" %c", &g->vexs[i]);
     for (i = 0; i < g->numVertexes; i++)
         for (j = 0; j < g->numVertexes; j++)
-            g->arc[i][i] = INFINITY;
+            g->arc[i][j] = INFINITY;
     for (k = 0; k < g->numEdges; k++)
     {
         printf("3 输入边的下标(从0开始)和权(i,j,w):\n");
