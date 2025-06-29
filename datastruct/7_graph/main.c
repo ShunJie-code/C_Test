@@ -98,6 +98,7 @@ void Test5(void)
 {
     MGraph graph;
     MGraphCreateFromBook(&graph);
+    printf("----------Prim--------\n");
     MiniSpanTreePrim(graph);
     printf("----------Kruskal--------\n");
     MiniSpanTreeKruskal(graph);

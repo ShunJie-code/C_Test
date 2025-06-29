@@ -21,6 +21,6 @@ void MiniSpanTreePrim(MGraph graph);
 /**
  * @brief 最小生成树 Kruskal算法，边少点多
  * kruskal算法是将图中的所有边按权值从小到大排序，然后逐一选择边，加入生成树中，前提是不形成回路。
- * @param graph 图的边集表示
+ * @param graph 图的邻接矩阵转化为边集表示
  */
 void MiniSpanTreeKruskal(MGraph graph); 

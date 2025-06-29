@@ -59,6 +59,7 @@ void MiniSpanTreeKruskal(MGraph graph)
     Edge edges[MAXVEX * MAXVEX];    // 存储所有边，边集数组
     int edgeCount = 0;
 
+    // 初始化父节点
     for (i = 0; i < graph.numVertexes; i++)
     {
         parent[i] = 0; 
@@ -79,10 +80,10 @@ void MiniSpanTreeKruskal(MGraph graph)
         }
     }
 
-    // 按边权排序
+    // 按边权排序-冒泡排序算法
     for (i = 0; i < edgeCount - 1; i++)
     {
-        for (j = 0; j < edgeCount - i - 1; j++)
+        for (j = edgeCount - 2; j >= i; j--)
         {
             if (edges[j].weight > edges[j + 1].weight)
             {
@@ -93,12 +94,6 @@ void MiniSpanTreeKruskal(MGraph graph)
         }
     }
 
-    // 初始化父节点
-    for (i = 0; i < graph.numVertexes; i++)
-    {
-        parent[i] = i;
-    }
-
     // Kruskal算法核心
     for (i = 0; i < edgeCount; i++)
     {
@@ -106,7 +101,8 @@ void MiniSpanTreeKruskal(MGraph graph)
         int endRoot = Find(parent, edges[i].end);
         if (startRoot != endRoot) // 如果不在同一集合中
         {
-            printf("Edge (%c, %c) with weight %d\n", graph.vexs[edges[i].begin], graph.vexs[edges[i].end], edges[i].weight);
+            printf("Edge (%c, %c) with weight %d\n", 
+                graph.vexs[edges[i].begin], graph.vexs[edges[i].end], edges[i].weight);
             parent[startRoot] = endRoot; // 合并集合
         }
     }
