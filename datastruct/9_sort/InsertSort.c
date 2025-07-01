@@ -1,10 +1,5 @@
 /*对循序表L作直接插入排序*/
-#define MAXSIZE 10
-typedef struct
-{
-    int r[MAXSIZE + 1];
-    int length;
-} SqList;
+#include "common_9.h"
 
 void InsertSort(SqList *L)
 {

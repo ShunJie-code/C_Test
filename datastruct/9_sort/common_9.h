@@ -21,4 +21,9 @@ void EasyBubbleSort(SqList *L);
  * @param L 
  */
 void BubbleSort(SqList *L);
+
+void InsertSort(SqList *L);
+
+void SelectSort(SqList *L);
+
 #endif
