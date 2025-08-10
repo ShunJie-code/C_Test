@@ -15,7 +15,7 @@
 #define INFINITY 65535
 
 typedef char VertexType; // 顶点类型定义
-typedef int EdgeType;
+typedef unsigned short EdgeType;
 
 typedef struct 
 {
@@ -99,5 +99,6 @@ void ALGraphDfs(const GraphAdjList *g);
 void ALGraphBfs(const GraphAdjList *g);
 
 void MGraphCreateFromBook(MGraph *g);
+void MGraphCreateForShortestPath(MGraph *g);
 
 #endif

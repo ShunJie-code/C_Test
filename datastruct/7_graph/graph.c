@@ -43,6 +43,41 @@ void MGraphCreateFromBook(MGraph *g)
     AssignmentEdge(g, 6, 7, 19);
 }
 
+void MGraphCreateForShortestPath(MGraph *g)
+{
+    int i, j;
+    g->numVertexes = 9;
+    g->numEdges = 16;
+    printf("1 教材图顶点数 %d 边数 %d\n", g->numVertexes, g->numEdges);
+    printf("2 每个顶点的数据: ");
+    for (i = 0; i < g->numVertexes; i++)
+    {
+        g->vexs[i] = 'a' + i;
+        printf("%c ", g->vexs[i]);
+    }
+    printf("\n");
+
+    for (i = 0; i < g->numVertexes; i++)
+        for (j = 0; j < g->numVertexes; j++)
+            g->arc[i][j] = INFINITY;
+    AssignmentEdge(g, 0, 1, 1);
+    AssignmentEdge(g, 0, 2, 5);
+    AssignmentEdge(g, 1, 2, 3);
+    AssignmentEdge(g, 1, 3, 7);
+    AssignmentEdge(g, 1, 4, 5);
+    AssignmentEdge(g, 2, 4, 1);
+    AssignmentEdge(g, 2, 5, 7);
+    AssignmentEdge(g, 3, 4, 2);
+    AssignmentEdge(g, 3, 6, 3);
+    AssignmentEdge(g, 4, 5, 3);
+    AssignmentEdge(g, 4, 6, 6);
+    AssignmentEdge(g, 4, 7, 9);
+    AssignmentEdge(g, 5, 7, 5);
+    AssignmentEdge(g, 6, 7, 2);
+    AssignmentEdge(g, 6, 8, 7);
+    AssignmentEdge(g, 7, 8, 4);
+}
+
 void MGraphCreate(MGraph *g)
 {
     int i, j, k, w;

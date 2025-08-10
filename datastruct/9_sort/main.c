@@ -19,7 +19,9 @@ typedef void (*TestFunc)(void);
 
 static void ShowSqList(const SqList *ls)
 {
-    // todo show the SqList
+    for (int i = 1; i <= ls->length; i++)
+        printf("%d ", ls->r[i]);
+    printf("\n");
 }
 
 void Test0(void)
@@ -32,28 +34,20 @@ void Test0(void)
     ls2 = ls;
     BubbleSort(&ls2);
     printf("After BubbleSort:\n");
-    for (int i = 1; i <= ls2.length; i++)
-        printf("%d ", ls2.r[i]);
-    printf("\n");
+    ShowSqList(&ls2);
 
     ls2 = ls;
     printf("Before InsertSort:\n");
-    for (int i = 1; i <= ls2.length; i++)
-        printf("%d ", ls2.r[i]);
-    printf("\n");
+    ShowSqList(&ls2);
 
     InsertSort(&ls2);
     printf("After InsertSort:\n");
-    for (int i = 1; i <= ls2.length; i++)
-        printf("%d ", ls2.r[i]);
-    printf("\n");
+    ShowSqList(&ls2);
 
     ls2 = ls;
     SelectSort(&ls2);
     printf("After SelectSort:\n");
-    for (int i = 1; i <= ls2.length; i++)
-        printf("%d ", ls2.r[i]);
-    printf("\n");
+    ShowSqList(&ls2);
 }
 
 void Test1(void)

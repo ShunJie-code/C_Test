@@ -23,6 +23,7 @@
 #include "graph.h"
 #include "mtly.h"
 #include "mcst.h"
+#include "shortestpath.h"
 
 /**
  * @brief 测试字符读取
@@ -104,6 +105,48 @@ void Test5(void)
     MiniSpanTreeKruskal(graph);
 }
 
+void Test6(void)
+{
+    MGraph graph;
+    MGraphCreateForShortestPath(&graph);
+    ShortestPath path;
+    PathDistance dist;
+    int startVex = 0; // 起点顶点下标
+    ShortestPathDijkstra(graph, startVex, &path, &dist);
+    printf("Shortest path from vertex %c:\n", graph.vexs[startVex]);
+    for (int i = 0; i < graph.numVertexes; i++)
+    {
+        if (dist[i] < INFINITY)
+        {
+            printf("到顶点%d--%c 的最短路径长度为 %d, 前驱顶点为 %d--%c\n",
+                   i, graph.vexs[i], dist[i], path[i], graph.vexs[path[i]]);
+        }
+        else
+        {
+            printf("到顶点 %c 无法到达\n", graph.vexs[i]);
+        }
+    }
+    printf("\n完整路径\n");
+    int endVex = 8; // 终点顶点下标
+    while (path[endVex] != -1) // 输出路径
+    {
+        printf("%d->", endVex);
+        if (path[endVex] == startVex)
+        {
+            printf("%d", startVex);
+            printf("\n起点顶点 %c ", graph.vexs[startVex]);
+            break;
+        }
+        endVex = path[endVex]; // 继续向前查找
+    }
+    printf("\n完整路径\n");
+    // for (int i = 0; i < graph.numVertexes; i++)
+    // {
+    //     printf("%d--", path[i]);
+    // }
+    // printf("\n");
+}
+
 static void RunFromEnterNum(int argc, char *argv[])
 {
     int testNum = -1;
@@ -132,6 +175,9 @@ static void RunFromEnterNum(int argc, char *argv[])
                 break;
             case 5:
                 Test5();
+                break;
+            case 6:
+                Test6();
                 break;
             default:
                 printf("Please enter a correct test number\n");
