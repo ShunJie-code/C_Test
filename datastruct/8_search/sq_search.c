@@ -1,12 +1,6 @@
 #include <stdio.h>
 
-void CheckSearchResult(int index, int key)
-{
-    if (index != 0)
-        printf("Element %d index is %d\n", key, index);
-    else
-        printf("Element %d is not found\n", key);
-}
+
 
 int SqSearch(int *a, int n, int key)
 {

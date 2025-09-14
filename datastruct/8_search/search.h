@@ -33,7 +33,7 @@ int SqSearch(int *a, int n, int key);
 int SqSearchBetter(int *a, int n, int key);
 
 /**
- * @brief 二分查找
+ * @brief 二分查找，适用于排序后的数组
  * 
  * @param a 数组指针 a[0] 不存值
  * @param n 数组长度

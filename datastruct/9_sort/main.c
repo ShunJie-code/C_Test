@@ -12,7 +12,6 @@
 #include <stdlib.h>
 #include "common_9.h"
 
-#define TESTNUM 6
 // #define MAXSIZE 10
 
 typedef void (*TestFunc)(void);
@@ -52,50 +51,48 @@ void Test0(void)
 
 void Test1(void)
 {
-
+    printf("%s\n", __func__);
 }
 
 void Test2(void)
 {
-
+    printf("%s\n", __func__);
 }
 
 void Test3(void)
 {
-
+    printf("%s\n", __func__);
 }
 
 void Test4(void)
 {
-
+    printf("%s\n", __func__);
 }
 
 void Test5(void)
 {
-
+    printf("%s\n", __func__);
 }
-
-static void RunFromEnterNum(int argc, char *argv[])
-{
-    int testNum = -1;
-    TestFunc testFunc[TESTNUM] = {Test0, Test1, Test2,
-                                  Test3, Test4, Test5};
-    for (int i = 0; i < argc; i++)
-    {
-        printf("The %d param is %s\n", i, argv[i]);
-        if (i >= 1)
-        {
-            testNum = atoi(argv[i]);
-            if (testNum >= 0 && testNum < TESTNUM)
-                testFunc[testNum]();
-            else
-                printf("Please enter a correct test number\n");
-        }
-    }
-} 
 
 int main(int argc, char* argv[])
 {
-    RunFromEnterNum(argc, argv);
+    int testNum = -1;
+    int testLength;
+    TestFunc testFunc[] = {Test0, Test1, Test2,
+                           Test3, Test4, Test5};
+    testLength = sizeof(testFunc) / sizeof(TestFunc);
+
+    for (int i = 0; i < argc; i++)
+    {
+        // printf("The %d param is %s\n", i, argv[i]); // The 0 param is ./main
+        if (i >= 1)
+        {
+            testNum = atoi(argv[i]);
+            if (testNum >= 0 && testNum < testLength)
+                testFunc[testNum]();
+            else
+                printf("Please enter a correct test number, max is %d\n", testLength);
+        }
+    }
     return 0;
 }
