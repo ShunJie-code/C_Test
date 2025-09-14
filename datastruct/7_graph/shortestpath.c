@@ -40,3 +40,26 @@ void ShortestPathDijkstra(MGraph graph, int v0, ShortestPath *path, PathDistance
         }
     }
 }
+
+void ShortestPathFloyd(MGraph graph, PathDistanceMatrix *path, ShortestPathMatrix *dist)
+{
+    int i, j, k;
+    // 初始化距离矩阵和路径矩阵
+    for (i = 0; i < graph.numVertexes; i++) {
+        for (j = 0; j < graph.numVertexes; j++)
+        {
+            (*dist)[i][j] = graph.arc[i][j];
+            (*path)[i][j] = (graph.arc[i][j] < INFINITY) ? j : -1; // 如果有边则设置为j
+        }
+    }
+    for (k = 0; k < graph.numVertexes; k++) {
+        for (i = 0; i < graph.numVertexes; i++) {
+            for (j = 0; j < graph.numVertexes; j++) {
+                if ((*dist)[i][j] > (*dist)[i][k] + (*dist)[k][j]) {
+                    (*dist)[i][j] = (*dist)[i][k] + (*dist)[k][j];
+                    (*path)[i][j] = (*path)[i][k]; // 更新路径
+                }
+            }
+        }
+    }
+}

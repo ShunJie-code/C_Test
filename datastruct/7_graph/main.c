@@ -10,10 +10,10 @@
  * 60 图的遍历-深度优先
  * 61 马踏连营算法，马可以遍历棋盘所有的点
  * 62 图的遍历-广度优先
- * 63 最小生成树-Prim
- * 64 最小生成树-kruskal
- * 65 最短路径-dijkstra
- * 66 最短路径-floyd
+ * 63 最小生成树-Prim：普里姆
+ * 64 最小生成树-kruskal：克鲁斯卡尔
+ * 65 最短路径-dijkstra: 迪杰斯特拉
+ * 66 最短路径-floyd：弗洛伊德
  * 67 拓扑排序
  * 68 关键路径
  */
@@ -105,6 +105,10 @@ void Test5(void)
     MiniSpanTreeKruskal(graph);
 }
 
+/**
+ * @brief 测试最短路径算法
+ * 
+ */
 void Test6(void)
 {
     MGraph graph;
@@ -126,7 +130,7 @@ void Test6(void)
             printf("到顶点 %c 无法到达\n", graph.vexs[i]);
         }
     }
-    printf("\n完整路径\n");
+    printf("完整路径: ");
     int endVex = 8; // 终点顶点下标
     while (path[endVex] != -1) // 输出路径
     {
@@ -134,17 +138,21 @@ void Test6(void)
         if (path[endVex] == startVex)
         {
             printf("%d", startVex);
-            printf("\n起点顶点 %c ", graph.vexs[startVex]);
+            // printf("\n起点顶点 %c ", graph.vexs[startVex]);
+            putchar('\n');
             break;
         }
         endVex = path[endVex]; // 继续向前查找
     }
-    printf("\n完整路径\n");
-    // for (int i = 0; i < graph.numVertexes; i++)
-    // {
-    //     printf("%d--", path[i]);
-    // }
-    // printf("\n");
+}
+
+void Test7(void)
+{
+    MGraph graph;
+    MGraphCreateFromBook(&graph);
+    PathDistanceMatrix path;
+    ShortestPathMatrix dist;
+    ShortestPathFloyd(graph, &path, &dist);
 }
 
 static void RunFromEnterNum(int argc, char *argv[])
