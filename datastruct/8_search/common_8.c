@@ -3,6 +3,9 @@
 #define _POSIX_C_SOURCE 199309L
 #include <stdio.h>
 #include <time.h>
+
+#include "common_8.h"
+
 void CheckSearchResult(int index, int key)
 {
     if (index != 0)

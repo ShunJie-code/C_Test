@@ -1,6 +1,8 @@
 /**
  * 第8章 查找算法
  * 70 顺序查找
+ * 
+ * 74 二叉排序树
  */
 #include <stdio.h>
 #include <stdlib.h>
