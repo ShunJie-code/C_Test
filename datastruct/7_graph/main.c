@@ -149,10 +149,24 @@ void Test6(void)
 void Test7(void)
 {
     MGraph graph;
-    MGraphCreateFromBook(&graph);
     PathDistanceMatrix path;
     ShortestPathMatrix dist;
+    int k;
+    int start = 0;
+    int end = VEXNUM - 1;
+    MGraphCreateForShortestPath(&graph);
     ShortestPathFloyd(graph, &path, &dist);
+    for (int i = 0; i < VEXNUM; i ++)
+        printf("%d\t", path[i][VEXNUM - 1]);
+    printf("\n");
+    k = path[start][end];
+    printf("Shortest path: %d", start);
+    while (k != end)
+    {
+        printf("->%d", k);
+        k = path[k][end];
+    }
+    printf("->%d\n", end);
 }
 
 static void RunFromEnterNum(int argc, char *argv[])
@@ -186,6 +200,9 @@ static void RunFromEnterNum(int argc, char *argv[])
                 break;
             case 6:
                 Test6();
+                break;
+            case 7:
+                Test7();
                 break;
             default:
                 printf("Please enter a correct test number\n");

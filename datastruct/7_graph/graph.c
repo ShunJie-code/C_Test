@@ -6,7 +6,7 @@ static void AssignmentEdge(MGraph *g, int i, int j, int w)
 {
     g->arc[i][j] = w;
     g->arc[j][i] = g->arc[i][j];
-    printf("边[%d][%d] = %d\n", j, i, g->arc[j][i]);
+    // printf("边[%d][%d] = %d\n", j, i, g->arc[j][i]);
 }
 
 void MGraphCreateFromBook(MGraph *g)
@@ -15,7 +15,7 @@ void MGraphCreateFromBook(MGraph *g)
     g->numVertexes = 9;
     g->numEdges = 15;
     printf("1 教材图顶点数 %d 边数 %d\n", g->numVertexes, g->numEdges);
-    printf("2 每个顶点的数据: ");
+    printf("2 %s每个顶点的数据: ", __func__);
     for (i = 0; i < g->numVertexes; i++)
     {
         g->vexs[i] = 'a' + i;
@@ -49,7 +49,7 @@ void MGraphCreateForShortestPath(MGraph *g)
     g->numVertexes = 9;
     g->numEdges = 16;
     printf("1 教材图顶点数 %d 边数 %d\n", g->numVertexes, g->numEdges);
-    printf("2 每个顶点的数据: ");
+    printf("2 %s每个顶点的数据: ", __func__);
     for (i = 0; i < g->numVertexes; i++)
     {
         g->vexs[i] = 'a' + i;
