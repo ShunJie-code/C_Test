@@ -169,6 +169,15 @@ void Test7(void)
     printf("->%d\n", end);
 }
 
+/**
+ * @brief 测试拓扑排序算法
+ * 
+ */
+void Test8(void)
+{
+    
+}
+
 static void RunFromEnterNum(int argc, char *argv[])
 {
     int testNum = -1;
@@ -215,6 +224,5 @@ static void RunFromEnterNum(int argc, char *argv[])
 int main(int argc, char *argv[])
 {
     RunFromEnterNum(argc, argv);
-    // Test5();
     return 0;
 }

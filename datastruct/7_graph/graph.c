@@ -100,6 +100,11 @@ void MGraphCreate(MGraph *g)
     }
 }
 
+/**
+ * @brief 邻接表表示无向图
+ * 
+ * @param g 
+ */
 void ALGraphCreate(GraphAdjList *g)
 {
     int i;
@@ -123,11 +128,70 @@ void ALGraphCreate(GraphAdjList *g)
         // 头插法
         e->next = g->adjList[i].firstegde;
         g->adjList[i].firstegde = e;
-
+        // 无向图需要
         e = (EdgeNode *)malloc(sizeof(EdgeNode));
         e->adjvex = i;
 
         e->next = g->adjList[j].firstegde;
         g->adjList[j].firstegde = e;
     }
+}
+
+static void InsertDirEdge(int i, int j, GraphAdjList *g)
+{
+    EdgeNode *e;
+    e = (EdgeNode *)malloc(sizeof(EdgeNode));
+    e->adjvex = j;
+    // 头插法
+    e->next = g->adjList[i].firstegde;
+    g->adjList[i].firstegde = e;
+}
+
+void ALGraphCreateForTopoSort(GraphAdjList *g)
+{
+    int i;
+    g->numVertexes = 14;
+    g->numEdges = 20;
+
+    for (i = 0; i < g->numVertexes; i++)
+    {
+        g->adjList[i].data = i;
+        g->adjList[i].firstegde = NULL;
+    }
+
+    g->adjList[0].in = 0;
+    g->adjList[1].in = 0;
+    g->adjList[2].in = 2;
+    g->adjList[3].in = 0;
+    g->adjList[4].in = 2;
+    g->adjList[5].in = 3;
+    g->adjList[6].in = 1;
+    g->adjList[7].in = 2;
+    g->adjList[8].in = 2;
+    g->adjList[9].in = 1;
+    g->adjList[10].in = 1;
+    g->adjList[11].in = 2;
+    g->adjList[12].in = 1;
+    g->adjList[13].in = 2;
+
+    InsertDirEdge(0, 4, g);
+    InsertDirEdge(0, 5, g);
+    InsertDirEdge(0, 11, g);
+    InsertDirEdge(1, 2, g);
+    InsertDirEdge(1, 4, g);
+    InsertDirEdge(1, 8, g);
+    InsertDirEdge(2, 5, g);
+    InsertDirEdge(2, 6, g);
+    InsertDirEdge(2, 9, g);
+    InsertDirEdge(3, 2, g);
+    InsertDirEdge(3, 13, g);
+    InsertDirEdge(4, 7, g);
+    InsertDirEdge(5, 8, g);
+    InsertDirEdge(5, 12, g);
+    InsertDirEdge(6, 5, g);
+    InsertDirEdge(8, 7, g);
+    InsertDirEdge(9, 10, g);
+    InsertDirEdge(9, 11, g);
+    InsertDirEdge(10, 13, g);
+    InsertDirEdge(12, 9, g);
 }

@@ -42,11 +42,20 @@ typedef struct EdgeNode
     struct EdgeNode *next;
 }EdgeNode;
 
+#ifdef NO_DIR_GRAPH
 typedef struct VertexNode
 {
     VertexType data;
     EdgeNode *firstegde;
 }VertexNode, AdjList[MAXVEX]; // 重定义了MAXVEX个结构体的数组类型
+#else
+typedef struct VertexNode
+{
+    int in;                  // 顶点入度
+    int data;
+    EdgeNode *firstegde;
+}VertexNode, AdjList[MAXVEX]; // 重定义了MAXVEX个结构体的数组类型
+#endif
 
 typedef struct 
 {
