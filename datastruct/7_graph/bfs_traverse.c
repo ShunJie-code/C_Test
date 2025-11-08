@@ -50,3 +50,7 @@ void MGraphBfs(MGraph G)
     printf("\n%s_%d: finish\n\n", __func__, __LINE__);
 }
 
+void ALGraphBfs(const GraphAdjList *g)
+{
+
+}

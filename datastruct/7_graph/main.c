@@ -24,6 +24,7 @@
 #include "mtly.h"
 #include "mcst.h"
 #include "shortestpath.h"
+#include "topologicalsort.h"
 
 /**
  * @brief 测试字符读取
@@ -98,7 +99,7 @@ void Test4(void)
 void Test5(void)
 {
     MGraph graph;
-    MGraphCreateFromBook(&graph);
+    MGraphCreateForMiniSpanTree(&graph);
     printf("----------Prim--------\n");
     MiniSpanTreePrim(graph);
     printf("----------Kruskal--------\n");
@@ -106,7 +107,7 @@ void Test5(void)
 }
 
 /**
- * @brief 测试最短路径算法
+ * @brief 测试最短路径算法_Dijkstra
  * 
  */
 void Test6(void)
@@ -146,6 +147,10 @@ void Test6(void)
     }
 }
 
+/**
+ * @brief 测试最短路径算法_Floyd
+ * 
+ */
 void Test7(void)
 {
     MGraph graph;
@@ -175,7 +180,10 @@ void Test7(void)
  */
 void Test8(void)
 {
-    
+    GraphAdjList graph;
+    ALGraphCreateForTopoSort(&graph);
+    int ret = TopologicalSort(&graph);
+    printf("%s_%d finish, ret = %d\n", __func__, __LINE__, ret);
 }
 
 static void RunFromEnterNum(int argc, char *argv[])
@@ -212,6 +220,9 @@ static void RunFromEnterNum(int argc, char *argv[])
                 break;
             case 7:
                 Test7();
+                break;
+            case 8:
+                Test8();
                 break;
             default:
                 printf("Please enter a correct test number\n");

@@ -9,12 +9,76 @@ static void AssignmentEdge(MGraph *g, int i, int j, int w)
     // printf("边[%d][%d] = %d\n", j, i, g->arc[j][i]);
 }
 
-void MGraphCreateFromBook(MGraph *g)
+static void InsertDirEdge(int i, int j, GraphAdjList *g)
+{
+    EdgeNode *e;
+    e = (EdgeNode *)malloc(sizeof(EdgeNode));
+    e->adjvex = j;
+    // 头插法
+    e->next = g->adjList[i].firstegde;
+    g->adjList[i].firstegde = e;
+}
+
+void MGraphCreate(MGraph *g)
+{
+    int i, j, k, w;
+    printf("1 请输入顶点数和边数(n,m):\n");
+    scanf("%d,%d", &g->numVertexes, &g->numEdges);
+    printf("2 请输入每个顶点的数据(a b c ...):\n");
+    for (i = 0; i < g->numVertexes; i++)
+        scanf(" %c", &g->vexs[i]);
+    for (i = 0; i < g->numVertexes; i++)
+        for (j = 0; j < g->numVertexes; j++)
+            g->arc[i][j] = INFINITY;
+    for (k = 0; k < g->numEdges; k++)
+    {
+        printf("3 输入边的下标(从0开始)和权(i,j,w):\n");
+        scanf("%d,%d,%d", &i, &j, &w);
+        g->arc[i][j] = w;
+        g->arc[j][i] = g->arc[i][j];
+        printf("图顶点vexs[%d] = %c\n", i, g->vexs[i]);
+        printf("邻接矩阵arc[%d][%d] = %d\n", j, i, g->arc[j][i]);
+    }
+}
+
+void ALGraphCreate(GraphAdjList *g)
+{
+    int i;
+    int j;
+    int k;
+    EdgeNode *e;
+    printf("1 请输入顶点和边数(n,m):\n");
+    scanf("%d,%d", &g->numVertexes, &g->numEdges);
+    printf("2 请输入每个顶点的数据(1 2 3 ...):\n");
+    for (i = 0; i < g->numVertexes; i++)
+    {
+        scanf(" %d", &g->adjList[i].data);
+        g->adjList[i].firstegde = NULL;
+    }
+    for (k = 0; k < g->numEdges; k++)
+    {
+        printf("3 输入边Vi Vj上的顶点序号(i,j): \n");
+        scanf("%d,%d", &i, &j);
+        e = (EdgeNode *)malloc(sizeof(EdgeNode));
+        e->adjvex = j;
+        // 头插法
+        e->next = g->adjList[i].firstegde;
+        g->adjList[i].firstegde = e;
+        // 无向图需要
+        e = (EdgeNode *)malloc(sizeof(EdgeNode));
+        e->adjvex = i;
+
+        e->next = g->adjList[j].firstegde;
+        g->adjList[j].firstegde = e;
+    }
+}
+
+void MGraphCreateForMiniSpanTree(MGraph *g)
 {
     int i, j;
     g->numVertexes = 9;
     g->numEdges = 15;
-    printf("1 教材图顶点数 %d 边数 %d\n", g->numVertexes, g->numEdges);
+    printf("1 图顶点数 %d 边数 %d\n", g->numVertexes, g->numEdges);
     printf("2 %s每个顶点的数据: ", __func__);
     for (i = 0; i < g->numVertexes; i++)
     {
@@ -78,75 +142,6 @@ void MGraphCreateForShortestPath(MGraph *g)
     AssignmentEdge(g, 7, 8, 4);
 }
 
-void MGraphCreate(MGraph *g)
-{
-    int i, j, k, w;
-    printf("1 请输入顶点数和边数(n,m):\n");
-    scanf("%d,%d", &g->numVertexes, &g->numEdges);
-    printf("2 请输入每个顶点的数据(a b c ...):\n");
-    for (i = 0; i < g->numVertexes; i++)
-        scanf(" %c", &g->vexs[i]);
-    for (i = 0; i < g->numVertexes; i++)
-        for (j = 0; j < g->numVertexes; j++)
-            g->arc[i][j] = INFINITY;
-    for (k = 0; k < g->numEdges; k++)
-    {
-        printf("3 输入边的下标(从0开始)和权(i,j,w):\n");
-        scanf("%d,%d,%d", &i, &j, &w);
-        g->arc[i][j] = w;
-        g->arc[j][i] = g->arc[i][j];
-        printf("图顶点vexs[%d] = %c\n", i, g->vexs[i]);
-        printf("邻接矩阵arc[%d][%d] = %d\n", j, i, g->arc[j][i]);
-    }
-}
-
-/**
- * @brief 邻接表表示无向图
- * 
- * @param g 
- */
-void ALGraphCreate(GraphAdjList *g)
-{
-    int i;
-    int j;
-    int k;
-    EdgeNode *e;
-    printf("1 请输入顶点和边数(n,m):\n");
-    scanf("%d,%d", &g->numVertexes, &g->numEdges);
-    printf("2 请输入每个顶点的数据(a b c ...):\n");
-    for (i = 0; i < g->numVertexes; i++)
-    {
-        scanf(" %c", &g->adjList[i].data);
-        g->adjList[i].firstegde = NULL;
-    }
-    for (k = 0; k < g->numEdges; k++)
-    {
-        printf("3 输入边Vi Vj上的顶点序号(i,j): \n");
-        scanf("%d,%d", &i, &j);
-        e = (EdgeNode *)malloc(sizeof(EdgeNode));
-        e->adjvex = j;
-        // 头插法
-        e->next = g->adjList[i].firstegde;
-        g->adjList[i].firstegde = e;
-        // 无向图需要
-        e = (EdgeNode *)malloc(sizeof(EdgeNode));
-        e->adjvex = i;
-
-        e->next = g->adjList[j].firstegde;
-        g->adjList[j].firstegde = e;
-    }
-}
-
-static void InsertDirEdge(int i, int j, GraphAdjList *g)
-{
-    EdgeNode *e;
-    e = (EdgeNode *)malloc(sizeof(EdgeNode));
-    e->adjvex = j;
-    // 头插法
-    e->next = g->adjList[i].firstegde;
-    g->adjList[i].firstegde = e;
-}
-
 void ALGraphCreateForTopoSort(GraphAdjList *g)
 {
     int i;
@@ -168,7 +163,7 @@ void ALGraphCreateForTopoSort(GraphAdjList *g)
     g->adjList[6].in = 1;
     g->adjList[7].in = 2;
     g->adjList[8].in = 2;
-    g->adjList[9].in = 1;
+    g->adjList[9].in = 2;
     g->adjList[10].in = 1;
     g->adjList[11].in = 2;
     g->adjList[12].in = 1;

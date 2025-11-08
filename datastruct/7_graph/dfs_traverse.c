@@ -71,7 +71,3 @@ void ALGraphDfs(const GraphAdjList *g)
     printf("\n%s_%d finish\n", __func__, __LINE__);
 }
 
-void ALGraphBfs(const GraphAdjList *g)
-{
-
-}

@@ -37,9 +37,9 @@ typedef struct
 // region 邻接表
 typedef struct EdgeNode
 {
-    int adjvex;
+    int adjvex;                 // 邻接点域，存储该顶点对应的下标
     EdgeType weight;
-    struct EdgeNode *next;
+    struct EdgeNode *next;      // 链域，指向下一个邻接点
 }EdgeNode;
 
 #ifdef NO_DIR_GRAPH
@@ -61,7 +61,7 @@ typedef struct
 {
     AdjList adjList;
     int numVertexes, numEdges;  // 图中的顶点数和边数
-}GraphAdjList;
+}GraphAdjList, *PGraphAdjList;
 // endregion 邻接表
 
 /**
@@ -88,7 +88,7 @@ void MGraphBfs(MGraph g);
 /**
  * @brief 邻接表，建立无向网、无向图
  * 
- * @param G 
+ * @param g 
  */
 void ALGraphCreate(GraphAdjList *g);
 
@@ -99,7 +99,6 @@ void ALGraphCreate(GraphAdjList *g);
  */
 void ALGraphDfs(const GraphAdjList *g);
 
-
 /**
  * @brief 邻接表，Bfs遍历
  * 
@@ -107,7 +106,19 @@ void ALGraphDfs(const GraphAdjList *g);
  */
 void ALGraphBfs(const GraphAdjList *g);
 
-void MGraphCreateFromBook(MGraph *g);
+void MGraphCreateForMiniSpanTree(MGraph *g);
+
+/**
+ * @brief 为最短路径算法创建图-邻接矩阵
+ * 
+ * @param g 
+ */
 void MGraphCreateForShortestPath(MGraph *g);
+
+/**
+ * @brief 为拓扑排序创建图-邻接表
+ * 
+ */
+void ALGraphCreateForTopoSort(GraphAdjList *g);
 
 #endif
