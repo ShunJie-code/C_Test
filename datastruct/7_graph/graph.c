@@ -8,12 +8,37 @@ static void AssignmentEdge(MGraph *g, int i, int j, int w)
     g->arc[j][i] = g->arc[i][j];
     // printf("边[%d][%d] = %d\n", j, i, g->arc[j][i]);
 }
-
+/**
+ * @brief 插入有向边
+ * 
+ * @param i 
+ * @param j 
+ * @param g 
+ */
 static void InsertDirEdge(int i, int j, GraphAdjList *g)
 {
     EdgeNode *e;
     e = (EdgeNode *)malloc(sizeof(EdgeNode));
     e->adjvex = j;
+    // 头插法
+    e->next = g->adjList[i].firstegde;
+    g->adjList[i].firstegde = e;
+}
+
+/**
+ * @brief 插入有向边-带权值
+ * 
+ * @param i 
+ * @param j 
+ * @param weight 
+ * @param g 
+ */
+static void InsertWeightDirEdge(int i, int j, int weight, GraphAdjList *g)
+{
+    EdgeNode *e;
+    e = (EdgeNode *)malloc(sizeof(EdgeNode));
+    e->adjvex = j;
+    e->weight = weight;
     // 头插法
     e->next = g->adjList[i].firstegde;
     g->adjList[i].firstegde = e;
@@ -189,4 +214,42 @@ void ALGraphCreateForTopoSort(GraphAdjList *g)
     InsertDirEdge(9, 11, g);
     InsertDirEdge(10, 13, g);
     InsertDirEdge(12, 9, g);
+}
+
+void ALGraphCreateForCriticalPath(GraphAdjList *g)
+{
+    int i;
+    g->numVertexes = 10;
+    g->numEdges = 13;
+
+    for (i = 0; i < g->numVertexes; i++)
+    {
+        g->adjList[i].data = i;
+        g->adjList[i].firstegde = NULL;
+    }
+
+    g->adjList[0].in = 0;
+    g->adjList[1].in = 1;
+    g->adjList[2].in = 1;
+    g->adjList[3].in = 2;
+    g->adjList[4].in = 2;
+    g->adjList[5].in = 1;
+    g->adjList[6].in = 1;
+    g->adjList[7].in = 2;
+    g->adjList[8].in = 1;
+    g->adjList[9].in = 2;
+
+    InsertWeightDirEdge(0, 1, 3, g);
+    InsertWeightDirEdge(0, 2, 4, g);
+    InsertWeightDirEdge(1, 3, 5, g);
+    InsertWeightDirEdge(1, 4, 6, g);
+    InsertWeightDirEdge(2, 3, 8, g);
+    InsertWeightDirEdge(2, 5, 7, g);
+    InsertWeightDirEdge(3, 4, 3, g);
+    InsertWeightDirEdge(4, 6, 9, g);
+    InsertWeightDirEdge(4, 7, 4, g);
+    InsertWeightDirEdge(5, 7, 6, g);
+    InsertWeightDirEdge(6, 9, 2, g);
+    InsertWeightDirEdge(7, 8, 5, g);
+    InsertWeightDirEdge(8, 9, 3, g);
 }

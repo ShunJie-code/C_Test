@@ -186,6 +186,15 @@ void Test8(void)
     printf("%s_%d finish, ret = %d\n", __func__, __LINE__, ret);
 }
 
+/**
+ * @brief 测试关键路径算法
+ * 
+ */
+void Test9(void)
+{
+
+}
+
 static void RunFromEnterNum(int argc, char *argv[])
 {
     int testNum = -1;
@@ -224,6 +233,9 @@ static void RunFromEnterNum(int argc, char *argv[])
             case 8:
                 Test8();
                 break;
+            case 9:
+                Test9();
+                break;   
             default:
                 printf("Please enter a correct test number\n");
                 break;

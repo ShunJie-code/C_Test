@@ -121,4 +121,10 @@ void MGraphCreateForShortestPath(MGraph *g);
  */
 void ALGraphCreateForTopoSort(GraphAdjList *g);
 
+/**
+ * @brief 为关键路径算法创建图-邻接表
+ * 
+ */
+void ALGraphCreateForCriticalPath(GraphAdjList *g);
+
 #endif
