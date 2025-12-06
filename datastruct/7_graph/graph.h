@@ -53,7 +53,7 @@ typedef struct VertexNode
 {
     int in;                  // 顶点入度
     int data;
-    EdgeNode *firstegde;
+    EdgeNode *firstegde;     // 链表起点
 }VertexNode, AdjList[MAXVEX]; // 重定义了MAXVEX个结构体的数组类型
 #endif
 

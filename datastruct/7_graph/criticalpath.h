@@ -13,5 +13,11 @@
 #define CRITICALPATH_H
 
 #include "graph.h"
+/**
+ * @brief 关键路径算法: 求从源点到汇点的最长路径
+ * 
+ * @param g 
+ */
+void CriticalPath(PGraphAdjList g);
 
 #endif

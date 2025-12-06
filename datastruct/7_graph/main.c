@@ -25,6 +25,7 @@
 #include "mcst.h"
 #include "shortestpath.h"
 #include "topologicalsort.h"
+#include "criticalpath.h"
 
 /**
  * @brief 测试字符读取
@@ -192,7 +193,10 @@ void Test8(void)
  */
 void Test9(void)
 {
-
+    GraphAdjList graph;
+    ALGraphCreateForCriticalPath(&graph);
+    CriticalPath(&graph);
+    printf("%s_%d finish\n", __func__, __LINE__);
 }
 
 static void RunFromEnterNum(int argc, char *argv[])
