@@ -10,6 +10,7 @@
 #include "search.h"
 typedef void (*TestFunc)(void);
 
+// 8.3 顺序查找/线性查找
 void Test0(void)
 {
     int a[] = {0, 1, 2, 3, 4, 5}; // 注意 0 查找不到，a[0]不存值
@@ -18,16 +19,18 @@ void Test0(void)
     int index = SqSearch(a, sizeof(a) / sizeof(int) - 1, key);
     CheckSearchResult(index, key);
     key = 5;
-    index = SqSearchBetter(a, sizeof(a) / sizeof(int) - 1, key);
-    CheckSearchResult(index, key);
-    key = 1;
-    index = BinarySearch(a, sizeof(a) / sizeof(int) - 1, key);
+    index = SqSentinelSearch(a, sizeof(a) / sizeof(int) - 1, key);
     CheckSearchResult(index, key);
     ShowTimeStamp();
 }
 
+// 8.4 有序表查找
 void Test1(void)
 {
+    int a[] = {0, 1, 2, 3, 4, 5}; // 注意 0 查找不到，a[0]不存值
+    int key = 1;
+    int index = BinarySearch(a, sizeof(a) / sizeof(int) - 1, key);
+    CheckSearchResult(index, key);
     printf("%s\n", __func__);
 }
 
@@ -61,7 +64,7 @@ int main(int argc, char* argv[])
 
     for (int i = 0; i < argc; i++)
     {
-        // printf("The %d param is %s\n", i, argv[i]); // The 0 param is ./main
+        printf("The %d param is %s\n", i, argv[i]); // The 0 param is ./main
         if (i >= 1)
         {
             testNum = atoi(argv[i]);

@@ -1,3 +1,5 @@
+#ifndef COMMON_8_H
+#define COMMON_8_H
 /**
  * @brief 检查结果
  * 
@@ -11,3 +13,5 @@ void CheckSearchResult(int index, int key);
  * 
  */
 void ShowTimeStamp(void);
+
+#endif

@@ -8,10 +8,8 @@
  * @copyright Copyright (c) 2025
  * 
  */
-
-void CheckSearchResult(int index, int key);
-
-
+#ifndef SEARCH_H
+#define SEARCH_H
 /**
  * @brief 顺序表查找
  * 
@@ -30,7 +28,7 @@ int SqSearch(int *a, int n, int key);
  * @param key 
  * @return int 搜到的值的位置，没有则返回0
  */
-int SqSearchBetter(int *a, int n, int key);
+int SqSentinelSearch(int *a, int n, int key);
 
 /**
  * @brief 二分查找，适用于排序后的数组
@@ -41,3 +39,5 @@ int SqSearchBetter(int *a, int n, int key);
  * @return int 搜到的值的位置，没有则返回0
  */
 int BinarySearch(int *a, int n, int key);
+
+#endif

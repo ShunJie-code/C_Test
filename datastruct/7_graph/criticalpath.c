@@ -3,7 +3,7 @@
 #include "criticalpath.h"
 
 int *etv;    // 顶点事件最早发生时间
-int *ltv;    // 顶点事件最晚发生时间
+int *ltv;    // 顶点事件最晚发生时间; 根据总时间反算，事件最晚可以发生的时间
 
 int *stack2; // 存储拓扑序列的栈
 int top2;    // 存储拓扑序列的栈指针

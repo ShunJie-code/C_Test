@@ -27,7 +27,7 @@ OBJ = main.o printf_hello.o factorial.o
 CXXFLAGS = -c -Wall
 
 # @指目标 ^指所有依赖 <指第一个依赖
-$(TARGET): $(OBJ)
+$(TARGET): $(OBJ) | Makefile
 	$(CXX) -o $@ $^
 
 %.o: %.cpp
