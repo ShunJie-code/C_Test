@@ -1,3 +1,13 @@
+/**
+ * @file sequentialSearch.c
+ * @author your name (you@domain.com)
+ * @brief 顺序查找
+ * @version 0.1
+ * @date 2025-12-22
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
 #include <stdio.h>
 #include "search.h"
 
@@ -27,5 +37,3 @@ int SqSentinelSearch(int *a, int n, int key)
     }
     return i;
 }
-
-

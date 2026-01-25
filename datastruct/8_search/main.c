@@ -27,9 +27,12 @@ void Test0(void)
 // 8.4 有序表查找
 void Test1(void)
 {
-    int a[] = {0, 1, 2, 3, 4, 5}; // 注意 0 查找不到，a[0]不存值
+    int a[] = {0, 1, 2, 3, 4, 5, 10, 100}; // 注意 0 查找不到，a[0]不存值
     int key = 1;
     int index = BinarySearch(a, sizeof(a) / sizeof(int) - 1, key);
+    CheckSearchResult(index, key);
+    key = 10;
+    index = InterpolationSearch(a, sizeof(a) / sizeof(int) - 1, key);
     CheckSearchResult(index, key);
     printf("%s\n", __func__);
 }

@@ -40,4 +40,13 @@ int SqSentinelSearch(int *a, int n, int key);
  */
 int BinarySearch(int *a, int n, int key);
 
+/**
+ * @brief 差值查找
+ * 
+ * @param a 
+ * @param n 
+ * @param key 
+ * @return int 
+ */
+int InterpolationSearch(int *a, int n, int key);
 #endif
