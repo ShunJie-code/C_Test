@@ -1,8 +1,19 @@
-#include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "binarySortTree.h"
 
-bool BST_Search(BiTree T, int key, BiTree f, BiTree *p)
+void PreOrderTraverse(BiTree T, int level)
+{
+    if (T == NULL)
+    {
+        return;
+    }
+    printf("%d 位于第 %d 层\n", T->data, level);
+    PreOrderTraverse(T->lchild, level + 1);
+    PreOrderTraverse(T->rchild, level + 1);
+}
+
+bool BST_Search(BiTree T, int key, BiTNode *f, BiTNode **p)
 {
     if (!T)
     {
@@ -15,20 +26,21 @@ bool BST_Search(BiTree T, int key, BiTree f, BiTree *p)
         return true;
     }
     else if (key < T->data)
-        return SearchBSF(T->lchild, key, T, p); // 这里输入的变量P就是函数的指针变量
+        return BST_Search(T->lchild, key, T, p); // 小，往左子树递归
     else
-        return SearchBSF(T->rchild, key, T, p); //
+        return BST_Search(T->rchild, key, T, p); // 大，往右子树递归
 }
 
-// 插入操作-当二叉排序树中不存在关键字为key的数据元素时，插入key返回true，否则返回false
 bool BST_Inseart(BiTree *T, int key)
 {
     BiTree p, s;
-    if (!SearchBSF(*T, key, NULL, &p))
+    if (!BST_Search(*T, key, NULL, &p))
     {
-        s = (BiTree)malloc(sizeof(BiTNode));
+        s = (BiTNode *)malloc(sizeof(BiTNode));
         s->data = key;
-        s->lchild = s->rchild = NULL;
+        s->lchild = NULL;
+        s->rchild = NULL;
+        // 如果p为空代表树为空
         if (!p)
             *T = s;
         else if (key < p->data)

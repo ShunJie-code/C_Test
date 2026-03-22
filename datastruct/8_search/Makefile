@@ -3,7 +3,8 @@ TARGET = main
 CFILES = main.c \
 sequentialSearch.c \
 orderTableSearch.c \
-common_8.c
+common_8.c \
+binarySortTree.c
 $(TARGET): $(CFILES) | Makefile
 	gcc -g -Wall -o $@ $(CFILES) -lm
 clean:

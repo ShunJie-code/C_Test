@@ -3,8 +3,8 @@
 #define _POSIX_C_SOURCE 199309L
 #include <stdio.h>
 #include <time.h>
-
 #include "common_8.h"
+#include "binarySortTree.h"
 
 void CheckSearchResult(int index, int key)
 {
@@ -23,3 +23,4 @@ void ShowTimeStamp(void)
     clock_gettime(CLOCK_REALTIME, &ts);  // ns级别时间戳
     printf("Seconds: %ld, Nanoseconds: %ld\n", ts.tv_sec, ts.tv_nsec);
 }
+
