@@ -19,6 +19,17 @@ typedef struct BiTNode
 } BiTNode, *BiTree;
 
 /**
+ * @brief 创建二叉排序树
+ * 
+ * @param T 
+ * @param arr 
+ * @param len 
+ * @return true 
+ * @return false 
+ */
+bool BST_Create(BiTree *T, int arr[], int len);
+
+/**
  * @brief 查找操作-递归查找二叉排序树T中是否存在key
  * @param T 树根、递归的节点
  * @param key 要查找的值
@@ -47,5 +58,19 @@ bool BST_Inseart(BiTree *T, int key);
  * @param level 
  */
 void PreOrderTraverse(BiTree T, int level);
+
+
+void LevelOrderTraverse(BiTree root);
+
+/**
+ * @brief 若二叉树T中存在关键字等于Key的数据元素时，则删除该数据元素节点
+ * 并返回TRUE,否则返回FALSE
+ * 
+ * @param tree 
+ * @param key 
+ * @return true 
+ * @return false 
+ */
+bool BST_Delete(BiTree *tree, int key);
 
 #endif

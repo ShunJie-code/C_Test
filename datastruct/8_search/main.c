@@ -6,6 +6,7 @@
  * 73 线性索引查找
  * 74 二叉排序树：插入和删除和查找的效率都非常高
  * 75 二叉排序树的查找插入、删除
+ * 76 AVL树
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -67,7 +68,23 @@ void Test3(void)
 
 void Test4(void)
 {
-    printf("%s\n", __func__);
+    printf("%s 二叉排序树删除\n", __func__);
+    BiTree bTree = NULL;  // 必须要定义一个空树
+    int arr[] = {62, 58, 47, 35, 29, 37, 36, 51, 49, 48,
+                50, 56, 88, 73, 99, 93};
+    int len = sizeof(arr) / sizeof(int);
+    BST_Create(&bTree, arr, len);
+    printf("origin:\n");
+    LevelOrderTraverse(bTree);
+
+    BST_Delete(&bTree, 47);
+    printf("after delete 47:\n");
+    LevelOrderTraverse(bTree);
+
+    BST_Delete(&bTree, 62);
+    printf("after delete 62:\n");
+    LevelOrderTraverse(bTree);
+    printf("%s 二叉排序树删除，测试完成\n", __func__);
 }
 
 void Test5(void)
@@ -85,7 +102,7 @@ int main(int argc, char* argv[])
 
     for (int i = 0; i < argc; i++)
     {
-        printf("The %d param is %s\n", i, argv[i]); // The 0 param is ./main
+        // printf("The %d param is %s\n", i, argv[i]); // The 0 param is ./main
         if (i >= 1)
         {
             testNum = atoi(argv[i]);
