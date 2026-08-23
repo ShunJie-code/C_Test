@@ -21,3 +21,23 @@ void L_Rotate(AvlTree *p)
     rTree->lchild = (*p);           // 
     *p = rTree;  
 }
+
+/**
+ * @brief 
+ * 
+ * @param tree 
+ */
+void LeftBalance(AvlTree *tree)
+{
+
+}
+
+/**
+ * @brief 
+ * 
+ * @param tree 
+ */
+void RightBalance(AvlTree *tree)
+{
+    
+}
