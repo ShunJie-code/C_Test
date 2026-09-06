@@ -12,10 +12,14 @@
 #ifndef AVL_TREE_H
 #define AVL_TREE_H
 
+#define LH (1)   // 左子树高
+#define EH (0)
+#define RH (-1)  // 右子树高
 // 概念1 平衡因子BF,左子树深度减去右子树深度
 typedef struct AvlTNode
 {
     int data;
+    // 平衡因子；左子树深度减去右子树深度
     int bf;
     struct AvlTNode *lchild, *rchild;
 }AvlTNode, *AvlTree;
