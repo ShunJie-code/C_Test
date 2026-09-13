@@ -13,6 +13,7 @@
 #include "common_8.h"
 #include "search.h"
 #include "binarySortTree.h"
+#include "avl_tree.h"
 
 typedef void (*TestFunc)(void);
 
@@ -89,7 +90,19 @@ void Test4(void)
 
 void Test5(void)
 {
-    printf("%s\n", __func__);
+    printf("测试插入生成AVL树 平衡二叉树 %s\n", __func__);
+    int i;
+    int a[] = {3, 3, 2, 1, 4, 5, 6, 6, 7, 10, 9, 8, 8};
+    AvlTree avlTree = NULL;
+    int taller;
+    for (i = 0; i < sizeof(a) / sizeof(int); i++)
+    {
+        AVL_Insert(&avlTree, a[i], &taller);
+        // printf("after insert %d:\n", a[i]);
+        // AVL_LevelOrderTraverse(avlTree);
+    }
+    AVL_LevelOrderTraverse(avlTree);
+    printf("%s 测试插入生成平衡二叉树，测试完成\n", __func__);
 }
 
 int main(int argc, char* argv[])

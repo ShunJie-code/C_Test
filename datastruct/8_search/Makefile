@@ -4,6 +4,7 @@ CFILES = main.c \
 sequentialSearch.c \
 orderTableSearch.c \
 common_8.c \
+avl_tree.c \
 binarySortTree.c
 $(TARGET): $(CFILES) | Makefile
 	gcc -g -Wall -o $@ $(CFILES) -lm

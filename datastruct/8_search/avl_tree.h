@@ -15,6 +15,9 @@
 #define LH (1)   // 左子树高
 #define EH (0)
 #define RH (-1)  // 右子树高
+
+#define TRUE (1)
+#define FALSE (0)
 // 概念1 平衡因子BF,左子树深度减去右子树深度
 typedef struct AvlTNode
 {
@@ -25,6 +28,8 @@ typedef struct AvlTNode
 }AvlTNode, *AvlTree;
 
 
-// euru
+int AVL_Insert(AvlTree *tree, int e, int *taller);
+
+void AVL_LevelOrderTraverse(AvlTree root);
 
 #endif

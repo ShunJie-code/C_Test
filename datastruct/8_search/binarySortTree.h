@@ -59,7 +59,11 @@ bool BST_Inseart(BiTree *T, int key);
  */
 void PreOrderTraverse(BiTree T, int level);
 
-
+/**
+ * @brief 树的层序遍历；将树的每层数据打印出来
+ * 
+ * @param root 
+ */
 void LevelOrderTraverse(BiTree root);
 
 /**
