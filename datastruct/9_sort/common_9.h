@@ -8,6 +8,13 @@ typedef struct
     int length;
 } SqList;
 
+/**
+ * @brief 交换顺序表中两个元素的位置
+ * 
+ * @param L 
+ * @param i 
+ * @param j 
+ */
 void swap(SqList *L, int i, int j);
 /**
  * @brief 最简单排序实现
@@ -22,8 +29,21 @@ void EasyBubbleSort(SqList *L);
  */
 void BubbleSort(SqList *L);
 
+/**
+ * @brief 直接插入排序算法
+ * 
+ * @param L 
+ */
 void InsertSort(SqList *L);
 
+/**
+ * @brief  选择排序算法
+ * 
+ * @param L 
+ */
 void SelectSort(SqList *L);
+
+void QuickSort(SqList *L, int low, int high);
+
 
 #endif
