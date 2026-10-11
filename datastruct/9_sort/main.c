@@ -52,6 +52,15 @@ void Test0(void)
 void Test1(void)
 {
     printf("%s\n", __func__);
+    SqList ls = {
+        .r = {0, 9, 1, 5, 8, 3, 7, 4, 6, 2, 99, 98, 97},
+        .length = 12
+    };
+    SqList ls2;
+    ls2 = ls;
+    QSort(&ls2);
+    printf("After Quick Sort:\n");
+    ShowSqList(&ls2);
 }
 
 void Test2(void)

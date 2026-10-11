@@ -2,6 +2,7 @@
 CFILES = main.c \
 BubbleSort.c \
 InsertSort.c \
-SelectSort.c
+SelectSort.c \
+QuickSort.c
 hello: $(CFILES) | Makefile
 	gcc -g -Wall -o main $(CFILES) -lm

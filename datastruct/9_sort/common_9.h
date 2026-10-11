@@ -1,7 +1,7 @@
 #ifndef COMMON_9_H
 #define COMMON_9_H
 
-#define MAXSIZE 10
+#define MAXSIZE 20
 typedef struct
 {
     int r[MAXSIZE + 1];
@@ -43,7 +43,12 @@ void InsertSort(SqList *L);
  */
 void SelectSort(SqList *L);
 
-void QuickSort(SqList *L, int low, int high);
+/**
+ * @brief 快速排序，冒泡的升级版本
+ * 
+ * @param sq 
+ */
+void QSort(SqList *sq);
 
 
 #endif
